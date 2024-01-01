@@ -13,6 +13,6 @@ Sections order is: `Fixed`, `Changed`, `Added`, `Deprecated`, `Removed`, `Securi
 
 ## [Unreleased]
 
-[unreleased]: https://github.com/metaist/pdfmerge/compare/prod...main
+[unreleased]: https://github.com/metaist/inkfill/compare/prod...main
 
 These are changes that are on `main` that are not yet in `prod`.
