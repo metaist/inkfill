@@ -12,6 +12,11 @@ from .numerals import to_nth
 from .numerals import to_ordinal
 from .numerals import to_roman
 
+from .filters import compound
+from .filters import day_of_month
+from .filters import dollars
+from .filters import USD
+
 from .xref import Ref
 from .xref import RefFormat
 from .xref import Refs
@@ -32,6 +37,11 @@ __all__ = [
     "to_nth",
     "to_ordinal",
     "to_roman",
+    # filters
+    "compound",
+    "day_of_month",
+    "dollars",
+    "USD",
     # xref
     "Ref",
     "RefFormat",
