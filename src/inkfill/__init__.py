@@ -3,16 +3,19 @@
 .. include:: ../../README.md
    :start-line: 2
 """
+from .numerals import commafy
+from .numerals import NumFormat
+from .numerals import to_alpha
+from .numerals import to_cardinal
+from .numerals import to_decimal
+from .numerals import to_nth
+from .numerals import to_ordinal
+from .numerals import to_roman
 
-
-from .alpha import to_alpha
-from .numeric import commafy
-from .numeric import to_cardinal
-from .numeric import to_decimal
-from .numeric import to_nth
-from .numeric import to_ordinal
-from .roman import to_roman
-
+from .xref import Ref
+from .xref import RefFormat
+from .xref import Refs
+from .xref import slugify
 
 __version__ = "0.1.0"
 __pubdate__ = ""
@@ -22,10 +25,16 @@ __all__ = [
     "__pubdate__",
     # numeric
     "commafy",
+    "NumFormat",
     "to_alpha",
     "to_cardinal",
     "to_decimal",
     "to_nth",
     "to_ordinal",
     "to_roman",
+    # xref
+    "Ref",
+    "RefFormat",
+    "Refs",
+    "slugify",
 ]

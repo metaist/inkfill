@@ -1,13 +1,21 @@
 {
   "version": "0.2",
   "words": [
+    "attrbox",
+    "commafy",
+    "docopt",
+    "ieth",
     "illions",
     "inkfill",
+    "ldquo",
     "Metaist",
+    "MMXXIII",
+    "MMXXIV",
     "mypy",
     "pypa",
     "pypi",
     "pyright",
+    "rdquo",
     "setuptools",
     "venv"
   ]
