@@ -87,13 +87,13 @@ class Division(Registrable):
     name: str
     """Name of this kind."""
 
-    numeral: NumFormat = DECIMAL
+    numeral: NumFormat = field(default=DECIMAL)
     """Default numeral formatting for this kind."""
 
-    define: RefFormat = CITE_NAME
+    define: RefFormat = field(default=CITE_NAME)
     """Default formatting for defining a reference of this type."""
 
-    refer: RefFormat = CITE_FULL
+    refer: RefFormat = field(default=CITE_FULL)
     """Default formatting for referring to a reference of this type."""
 
     def __str__(self) -> str:
@@ -153,7 +153,7 @@ class Ref:
     slug: str = ""
     """Unique ID of this reference (should include `kind` + `name`)."""
 
-    kind: Division = Section
+    kind: Division = field(default=Section)
     """What kind of reference is this?"""
 
     values: List[int] = field(default_factory=list)
