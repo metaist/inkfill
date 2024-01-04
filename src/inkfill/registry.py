@@ -5,9 +5,7 @@ from typing import Dict
 from typing import Optional
 from typing import Type
 from typing import TypeVar
-from typing import Generic
 from typing import Union
-from typing import Any
 from typing import cast
 
 T = TypeVar("T", bound="Registrable")
