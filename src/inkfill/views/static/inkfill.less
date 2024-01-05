@@ -91,10 +91,6 @@ p.resolved {
   display: none;
 }
 
-.debug {
-  border: 1px solid red;
-}
-
 .left {
   text-align: left;
 }
@@ -179,5 +175,27 @@ table {
 
     text-align: left;
     vertical-align: top;
+  }
+}
+
+body.debug {
+  .def {
+    border: 1px solid green;
+  }
+
+  .ref {
+    border-bottom: 1px solid blue;
+  }
+
+  .not-defined {
+    border: 1px solid red;
+  }
+}
+
+section.debug {
+  border: 1px solid red;
+
+  ul {
+    padding-left: 1.5rem;
   }
 }

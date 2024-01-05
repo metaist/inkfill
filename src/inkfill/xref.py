@@ -234,9 +234,10 @@ class Ref:
     def refer(self) -> str:
         """Return a link to the reference definition."""
         refer = self.kind.refer if len(self.refers) == 0 else self.refers[-1]
-        return f"""<a class="ref" href="#{self.slug}"
-                    data-kind="{self.kind}">{refer(self).strip()}</a>"""
-        # return f"""<a class="ref" href="#{self.slug}" data-kind="{self.kind}"></a>"""
+        return f"""
+            <a class="ref{'' if self.is_defined else ' not-defined'}"
+               href="#{self.slug}" data-kind="{self.kind}">{refer(self).strip()}</a>
+        """
 
     __str__ = refer
 

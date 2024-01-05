@@ -25,8 +25,33 @@
   <script src="/static/less.js"></script>
 </head>
 
-<body>
+<body class="{{ 'debug' if config.args.debug else '' }}">
   {% block content %}{% endblock %}
+
+
+  {% if config.args.debug %}
+  <section class="debug">
+
+    {% if xref.undefined | length %}
+    <h1 class="center">References Not Defined</h1>
+    <ul>
+      {% for ref in xref.undefined: %}
+      <li>{{ref}} as in {{ref.parent}}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h1 class="center">Defined Terms</h1>
+    <ul>
+      {% for ref in xref.store.values(): %}
+      {% if ref.is_defined and ref.kind.name == "Term": %}
+      <li>{{ref}} as in {{ref.parent}}</li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
   {% block scripts %}{% endblock %}
   <script>
     [].slice.apply(document.querySelectorAll("a.ref")).forEach((link) => {
@@ -39,6 +64,7 @@
 
       const attr = link.getAttribute("data-attr") || "data-cite";
       link.innerText = ref.getAttribute(attr);
+      link.classList.remove("not-defined");
     });
   </script>
   <script src="/static/paged.polyfill.js"></script>
