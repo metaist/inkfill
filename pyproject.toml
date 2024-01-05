@@ -30,7 +30,9 @@ requires-python = ">=3.8"
 dependencies = [
   # app => pinned
   "attrbox==0.1.5",
+  "bottle==0.12.25",
   "jinja2==3.1.2",
+  "timeloop==1.0.2",
 ]
 optional-dependencies = { dev = [
   # dev => latest
@@ -43,6 +45,7 @@ optional-dependencies = { dev = [
   "pytest-cov",
   "pytest",
   "ruff",
+  "WebTest",
 ] }
 readme = "README.md"
 license = { text = "MIT" }

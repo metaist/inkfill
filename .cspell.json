@@ -17,6 +17,9 @@
     "pyright",
     "rdquo",
     "setuptools",
-    "venv"
+    "timeloop",
+    "tmpl",
+    "venv",
+    "webtest"
   ]
 }

@@ -1,0 +1,15 @@
+{% extends "inkfill.html.j2" %}
+{% block content %}
+
+<p>
+  This is an example of the
+  <code>say_number</code> filter:<br />
+  {{ config.number | say_number }}
+</p>
+<p>
+  This is an example of formatting a
+  number in Roman numerals:<br />
+  {{ config.number | num_format("upper-roman")}}
+</p>
+
+{% endblock %}
