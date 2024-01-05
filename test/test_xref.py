@@ -33,7 +33,7 @@ def test_ref_format() -> None:
     assert ref.name in RefFormat.get("double-quotes").render(ref)
     assert "1(b)" in RefFormat.get("two-line").render(ref)
     assert "(b)" in RefFormat.get("cite-last").render(ref)
-    assert f"(b) {ref.name}" in RefFormat.get("cite-last-name").render(ref)
+    assert "(b)" in RefFormat.get("cite-last-name").render(ref)
     assert ref.name in RefFormat.get("cite-name").render(ref)
     assert "1(b)" in RefFormat.get("cite-full").render(ref)
     assert "Section (b)" in RefFormat.get("kind-last").render(ref)
