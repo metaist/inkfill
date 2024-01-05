@@ -102,7 +102,7 @@ class Division(Registrable):
 
 # https://weagree.com/clm/contracts/contract-structure-and-presentation/articles-sections-clause-numbering/
 
-Term = Division("Term", NumFormat.get(""), define=DOUBLE_QUOTES, refer=NAME_ONLY).add()
+Term = Division("Term", NumFormat.get(""), define=NAME_ONLY, refer=NAME_ONLY).add()
 """Defined term."""
 
 Article = Division("Article", NumFormat.get("upper-roman"), define=TWO_LINE).add()
@@ -223,6 +223,8 @@ class Ref:
         return f"""<a class="ref" href="#{self.slug}"
                     data-kind="{self.kind}">{refer(self).strip()}</a>"""
 
+    __str__ = refer
+
 
 class Refs:
     """Reference manager."""
@@ -288,3 +290,16 @@ class Refs:
                 break
             self.stack.pop()
         return self
+
+    def term(self, name: str) -> Ref:
+        """Refer to a terms."""
+        slug = slugify("term", name)
+        if slug in self.store:
+            return self.store[slug]
+        return self.add(Ref(name=name, kind=Term).update_slug())
+
+    def see(self, name: str = "", kind: str = "Section", slug: str = "") -> Ref:
+        """Refer to a reference."""
+        if slug in self.store:
+            return self.store[slug]
+        return self.add(Ref(name=name, kind=Division.get(kind)).update_slug(slug))
