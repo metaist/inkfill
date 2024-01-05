@@ -2,6 +2,8 @@
 // Copyright 2023-2024 Metaist LLC
 // @license MIT
 
+// Reset //
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +13,8 @@ html {
   font-family: "Times New Roman", Times, serif;
   font-size: 11pt;
 }
+
+// Headings & Sections //
 
 header {
   text-align: center;
@@ -36,28 +40,54 @@ h3 {
   text-transform: uppercase;
 }
 
-dl {
-  display: grid;
-  grid-template-columns: max-content auto;
-  margin-bottom: 1rem;
-
-  dt {
-    grid-column-start: 1;
-    font-weight: bold;
-    text-align: right;
-    padding-right: 1rem;
-  }
-
-  dd {
-    grid-column-start: 2;
-  }
-}
-
 section section {
   margin-top: 1rem;
   margin-left: 1rem;
 }
 
+// Definitions & References //
+
+.def {
+  .name {
+    font-weight: bold;
+  }
+
+  &[data-kind="Term"] {
+    font-weight: bold;
+
+    &::before {
+      font-weight: normal;
+      content: "“";
+    }
+    &::after {
+      font-weight: normal;
+      content: "”";
+    }
+  }
+}
+
+a {
+  color: blue;
+  &:visited {
+    color: blue;
+  }
+
+  &[href^="#"] {
+    color: black;
+    text-decoration: none;
+
+    &.ref {
+      &:not([data-kind="Term"]) {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Lists //
+
+ul,
 ol {
   margin-left: 2rem;
 }
@@ -68,88 +98,7 @@ li {
   margin-bottom: 1rem;
 }
 
-footer {
-  margin-top: 10rem;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.upper {
-  text-transform: uppercase;
-}
-
-p.whereas {
-  text-indent: 2rem;
-}
-
-p.resolved {
-  padding-left: 5.9rem;
-  text-indent: -5.9rem;
-}
-
-.hidden {
-  display: none;
-}
-
-.left {
-  text-align: left;
-}
-
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-.break-after {
-  page-break-after: always;
-}
-
-.signature {
-  width: 15rem;
-  margin-top: 5rem;
-  padding-top: 0.5rem;
-
-  border-top: 1px solid black;
-}
-
-.def[data-kind="Term"] {
-  font-weight: bold;
-
-  &::before {
-    font-weight: normal;
-    content: "“";
-  }
-  &::after {
-    font-weight: normal;
-    content: "”";
-  }
-}
-
-a {
-  color: blue;
-  &:visited {
-    color: blue;
-  }
-}
-
-a[href^="#"] {
-  color: black;
-  text-decoration: none;
-
-  &.ref {
-    &:not([data-kind="Term"]) {
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
-    // &::after {
-    //   content: attr(data-kind) " " target-text(attr(href url));
-    // }
-  }
-}
+// Other //
 
 table {
   width: 100%;
@@ -177,6 +126,59 @@ table {
     vertical-align: top;
   }
 }
+
+footer {
+  margin-top: 10rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+// Utility //
+
+.upper {
+  text-transform: uppercase;
+}
+
+.hidden {
+  display: none;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.break-after {
+  page-break-after: always;
+}
+
+// Document-Specific //
+
+p.whereas {
+  text-indent: 2rem;
+}
+
+p.resolved {
+  padding-left: 5.9rem;
+  text-indent: -5.9rem;
+}
+
+.signature {
+  width: 15rem;
+  margin-top: 5rem;
+  padding-top: 0.5rem;
+
+  border-top: 1px solid black;
+}
+
+//  Debugging //
 
 body.debug {
   .def {
