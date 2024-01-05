@@ -4,10 +4,9 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from dataclasses import field
+from typing import Callable
 from typing import Dict
 from typing import List
-from typing import Callable
-from typing import Optional
 from typing import Union
 import re
 
@@ -222,6 +221,7 @@ class Ref:
         refer = self.kind.refer if len(self.refers) == 0 else self.refers[-1]
         return f"""<a class="ref" href="#{self.slug}"
                     data-kind="{self.kind}">{refer(self).strip()}</a>"""
+        # return f"""<a class="ref" href="#{self.slug}" data-kind="{self.kind}"></a>"""
 
     __str__ = refer
 
@@ -259,17 +259,17 @@ class Refs:
         self,
         kind: Union[str, Division] = Section,
         # formatting overrides
-        numeral: Optional[NumFormat] = None,
-        define: Optional[RefFormat] = None,
-        refer: Optional[RefFormat] = None,
+        numeral: Union[str, NumFormat, None] = None,
+        define: Union[str, RefFormat, None] = None,
+        refer: Union[str, RefFormat, None] = None,
     ) -> Refs:
         """Add another level."""
         level = self.current.copy()
         level.kind = Division.get(kind) or Section
         level.values.append(0)
-        level.numerals.append(numeral or level.kind.numeral)
-        level.defines.append(define or level.kind.define)
-        level.refers.append(refer or level.kind.refer)
+        level.numerals.append(NumFormat.get(numeral, level.kind.numeral))
+        level.defines.append(RefFormat.get(define, level.kind.define))
+        level.refers.append(RefFormat.get(refer, level.kind.refer))
         self.stack.append(level)
         return self
 
@@ -291,15 +291,19 @@ class Refs:
             self.stack.pop()
         return self
 
-    def term(self, name: str) -> Ref:
-        """Refer to a terms."""
-        slug = slugify("term", name)
-        if slug in self.store:
-            return self.store[slug]
-        return self.add(Ref(name=name, kind=Term).update_slug())
+    ## Short-hand
+    def add(self, ref: Ref) -> Ref:
+        """Add a ref to the store."""
+        self.store[ref.slug] = ref
+        return ref
 
     def see(self, name: str = "", kind: str = "Section", slug: str = "") -> Ref:
         """Refer to a reference."""
+        slug = slug or slugify(kind, name)
         if slug in self.store:
             return self.store[slug]
         return self.add(Ref(name=name, kind=Division.get(kind)).update_slug(slug))
+
+    def term(self, name: str) -> Ref:
+        """Refer to a terms."""
+        return self.see(name, "Term")

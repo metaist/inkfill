@@ -6,6 +6,7 @@ import pytest
 # pkg
 from inkfill import Ref
 from inkfill import RefFormat
+from inkfill import Division
 from inkfill import Refs
 from inkfill import slugify
 from inkfill.numerals import DECIMAL
@@ -81,3 +82,18 @@ def test_refs_basic() -> None:
     refs.pop(4)  # more than levels, but it's ok
     assert refs.stack == []
     refs.pop(0)  # no op
+
+
+def test_refs_term_see() -> None:
+    """Short hand functions."""
+    refs = Refs()
+    ref = refs.term("Corporation")  # new term
+    assert ref.slug == "term-corporation"
+    assert ref.name == "Corporation"
+    assert ref.kind is Division.get("Term")
+
+    ref2 = refs.term("Corporation")
+    assert ref2 is ref  # same term
+
+    ref3 = refs.see("Corporation", kind="Term")
+    assert ref3 is ref

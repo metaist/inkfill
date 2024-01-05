@@ -17,6 +17,7 @@ from .filters import day_of_month
 from .filters import dollars
 from .filters import USD
 
+from .xref import Division
 from .xref import Ref
 from .xref import RefFormat
 from .xref import Refs
@@ -43,6 +44,7 @@ __all__ = [
     "dollars",
     "USD",
     # xref
+    "Division",
     "Ref",
     "RefFormat",
     "Refs",
