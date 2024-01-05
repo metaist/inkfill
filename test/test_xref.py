@@ -86,6 +86,14 @@ def test_refs_basic() -> None:
     refs.pop(0)  # no op
 
 
+def test_refs_preamble() -> None:
+    """Test Preamble formatting."""
+    refs = Refs()
+    ref = refs.push("Preamble").up("Preamble")
+    assert "><" in ref.define()  # i.e. empty tag
+    assert "Preamble" in ref.refer()
+
+
 def test_refs_term_see() -> None:
     """Short hand functions."""
     refs = Refs()
