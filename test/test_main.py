@@ -1,3 +1,4 @@
+# type: ignore
 """Test web server."""
 
 # std

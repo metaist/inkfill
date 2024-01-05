@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# type: ignore
 """Generate documents using configurable templates.
 
 Usage: inkfill [--help | --version] [--debug] <config>
