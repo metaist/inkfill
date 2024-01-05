@@ -108,10 +108,16 @@ class Division(Registrable):
         return self.name
 
 
-# https://weagree.com/clm/contracts/contract-structure-and-presentation/articles-sections-clause-numbering/
+# Not actually divisions
 
 Term = Division("Term", NumFormat.get(""), define=NAME_ONLY, refer=NAME_ONLY).add()
 """Defined term."""
+
+# Divisions
+# https://weagree.com/clm/contracts/contract-structure-and-presentation/articles-sections-clause-numbering/
+
+Preamble = Division("Preamble", define=lambda ref: "", refer=NAME_ONLY).add()
+"""First section, typically unnumbered."""
 
 Article = Division("Article", NumFormat.get("upper-roman"), define=TWO_LINE).add()
 """Often the top-most level."""
