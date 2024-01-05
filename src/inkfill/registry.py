@@ -33,8 +33,10 @@ class Registrable:
         return self
 
     @classmethod
-    def get(cls: Type[T], name: Union[str, T], default: Optional[T] = None) -> T:
+    def get(cls: Type[T], name: Union[str, T, None], default: Optional[T] = None) -> T:
         """Get the requested named object."""
+        if name is None:
+            return cast(T, default or cls.DEFAULT)
         if isinstance(name, cls):
             return name
         result = NAME_REGISTRY.get(cast(str, name), default)
