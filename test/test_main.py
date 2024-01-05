@@ -24,5 +24,5 @@ def test_server() -> None:
 
     assert app.get("/").status_code == 200
     assert app.get("/doc/0").status_code == 200
-    assert app.get("/static/index.less").status_code == 200
+    assert app.get("/static/inkfill.less").status_code == 200
     assert app.get("/does-not-exist", expect_errors=True).status_code == 404
