@@ -50,7 +50,10 @@ def cite_name(ref: Ref, cite: str = "") -> str:
     cite = cite or ref.cite
     if "." not in cite and not cite.endswith(")"):
         cite += "."
-    return f"{cite} {ref.name}".strip()
+    return f"""
+        <span class="cite">{cite}</span>
+        <span class="name">{ref.name}</name>
+    """
 
 
 DOUBLE_QUOTES = RefFormat(
