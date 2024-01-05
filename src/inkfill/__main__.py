@@ -86,7 +86,10 @@ def doc_render(idx: int) -> str:
     path = (doc.template or "").format(**config)
     tmpl = renderer.get_template(path)
     config_doc = AttrDict() << config << doc
-    return cast(str, tmpl.render(config=config_doc, Refs=Refs))
+    for key, val in config_doc.items():
+        if isinstance(val, str):
+            config_doc[key] = val.format(**config)
+    return cast(str, tmpl.render(config=config_doc, xref=Refs(), Refs=Refs))
 
 
 def setup_jinja() -> Environment:
