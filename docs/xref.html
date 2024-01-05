@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>inkfill.xref API documentation</title>
+<meta name="description" content="Cross-reference helpers." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>inkfill.xref</code></h1>
+</header>
+<section id="section-intro">
+<p>Cross-reference helpers.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Cross-reference helpers.&#34;&#34;&#34;
+
+# std
+from __future__ import annotations
+from dataclasses import dataclass
+from dataclasses import field
+from typing import Callable
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Tuple
+from typing import Union
+import re
+
+# pkg
+from .registry import Registrable
+from .numerals import NumFormat
+from .numerals import DECIMAL
+
+RE_NON_SLUG = re.compile(r&#34;[^a-z0-9_-]&#34;)
+&#34;&#34;&#34;Match characters to convert to dash in a slug.&#34;&#34;&#34;
+
+RE_REPEATED_DASH = re.compile(r&#34;-{2,}&#34;)
+&#34;&#34;&#34;Match repeated dashes.&#34;&#34;&#34;
+
+
+def slugify(*names: str) -&gt; str:
+    &#34;&#34;&#34;Return a slug version of a name.&#34;&#34;&#34;
+    return RE_REPEATED_DASH.sub(
+        &#34;-&#34;, RE_NON_SLUG.sub(&#34;-&#34;, &#34;-&#34;.join(names).lower())
+    ).strip(&#34;-&#34;)
+
+
+@dataclass
+class RefFormat(Registrable):
+    &#34;&#34;&#34;Reference format.&#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;Reference format name.&#34;&#34;&#34;
+
+    render: Callable[[Ref], str]
+    &#34;&#34;&#34;Render the reference.&#34;&#34;&#34;
+
+    def __call__(self, ref: Ref) -&gt; str:
+        &#34;&#34;&#34;Render the reference.&#34;&#34;&#34;
+        return self.render(ref)
+
+
+def cite_name(ref: Ref) -&gt; str:
+    &#34;&#34;&#34;Return citation format for most section headings.&#34;&#34;&#34;
+    cite = ref.cite
+    if &#34;.&#34; not in cite and not cite.endswith(&#34;)&#34;):
+        cite += &#34;.&#34;
+    return f&#34;{cite} {ref.name}&#34;.strip()
+
+
+DOUBLE_QUOTES = RefFormat(
+    &#34;double-quotes&#34;, lambda ref: f&#34;&amp;ldquo;{ref.name}&amp;rdquo;&#34;
+).add()
+&#34;&#34;&#34;Enclose `name` in double quotes (e.g., define a `Term`).&#34;&#34;&#34;
+
+TWO_LINE = RefFormat(
+    &#34;two-line&#34;, lambda ref: f&#34;{ref.kind} {ref.cite}&lt;br /&gt;{ref.name}&#34;
+).add()
+&#34;&#34;&#34;Show `kind`, `cite`, and `name` on two lines.&#34;&#34;&#34;
+
+CITE_NAME = RefFormat(&#34;cite-name&#34;, cite_name).add()
+&#34;&#34;&#34;Show full citation and the name (e.g., define `Part`, `Section`, `Subsection`).&#34;&#34;&#34;
+
+CITE_LAST = RefFormat(
+    &#34;cite-last&#34;, lambda ref: ref.numerals[-1].render(ref.values[-1], True)
+).add()
+&#34;&#34;&#34;Show only the end of the citation (e.g., define `Paragraph`, `Clause`).&#34;&#34;&#34;
+
+RefFormat.DEFAULT = CITE_FULL = RefFormat(
+    &#34;kind-cite&#34;, lambda ref: f&#34;{ref.kind} {ref.cite}&#34;
+).add()
+&#34;&#34;&#34;Show `kind` and `cite` (e.g., refer to non-`Term`).&#34;&#34;&#34;
+
+NAME_ONLY = RefFormat(&#34;name-only&#34;, lambda ref: ref.name).add()
+&#34;&#34;&#34;Show only the name (e.g., refer to a `Term`).&#34;&#34;&#34;
+
+
+@dataclass
+class Division(Registrable):
+    &#34;&#34;&#34;Document section.&#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;Name of this kind.&#34;&#34;&#34;
+
+    numeral: NumFormat = field(default=DECIMAL)
+    &#34;&#34;&#34;Default numeral formatting for this kind.&#34;&#34;&#34;
+
+    define: RefFormat = field(default=CITE_NAME)
+    &#34;&#34;&#34;Default formatting for defining a reference of this type.&#34;&#34;&#34;
+
+    refer: RefFormat = field(default=CITE_FULL)
+    &#34;&#34;&#34;Default formatting for referring to a reference of this type.&#34;&#34;&#34;
+
+    def __str__(self) -&gt; str:
+        return self.name
+
+
+# https://weagree.com/clm/contracts/contract-structure-and-presentation/articles-sections-clause-numbering/
+
+Term = Division(&#34;Term&#34;, NumFormat.get(&#34;&#34;), define=NAME_ONLY, refer=NAME_ONLY).add()
+&#34;&#34;&#34;Defined term.&#34;&#34;&#34;
+
+Article = Division(&#34;Article&#34;, NumFormat.get(&#34;upper-roman&#34;), define=TWO_LINE).add()
+&#34;&#34;&#34;Often the top-most level.&#34;&#34;&#34;
+
+Part = Division(&#34;Part&#34;, NumFormat.get(&#34;upper-alpha&#34;)).add()
+
+Division.DEFAULT = Section = Division(&#34;Section&#34;).add()
+&#34;&#34;&#34;The most common and default level.&#34;&#34;&#34;
+
+Subsection = Division(&#34;Subsection&#34;).add()
+&#34;&#34;&#34;Subdivision of a section.&#34;&#34;&#34;
+
+Paragraph = Division(&#34;Paragraph&#34;, NumFormat.get(&#34;lower-alpha&#34;), define=CITE_LAST).add()
+&#34;&#34;&#34;Items within a subsection.&#34;&#34;&#34;
+
+Item = Division(&#34;Item&#34;, NumFormat.get(&#34;lower-alpha&#34;), define=CITE_LAST).add()
+&#34;&#34;&#34;Similar to a paragraph.&#34;&#34;&#34;
+
+Clause = Division(&#34;Clause&#34;, NumFormat.get(&#34;lower-roman&#34;), define=CITE_LAST).add()
+&#34;&#34;&#34;Items within a paragraph.&#34;&#34;&#34;
+
+## Supplementary
+
+Exhibit = Division(&#34;Exhibit&#34;, NumFormat.get(&#34;upper-alpha&#34;), define=TWO_LINE).add()
+&#34;&#34;&#34;Supporting document.&#34;&#34;&#34;
+
+Appendix = Division(&#34;Appendix&#34;, NumFormat.get(&#34;upper-alpha&#34;), define=TWO_LINE).add()
+&#34;&#34;&#34;Additional details.&#34;&#34;&#34;
+
+Annex = Division(&#34;Annex&#34;, NumFormat.get(&#34;upper-alpha&#34;), define=TWO_LINE).add()
+&#34;&#34;&#34;Substantial appendix.&#34;&#34;&#34;
+
+Schedule = Division(&#34;Schedule&#34;, NumFormat.get(&#34;upper-alpha&#34;), define=TWO_LINE).add()
+&#34;&#34;&#34;Supplementary material.&#34;&#34;&#34;
+
+
+@dataclass
+class Ref:
+    &#34;&#34;&#34;Reference to a term or section of a document.&#34;&#34;&#34;
+
+    # `name` and `slug` are for referencing
+    # `kind` and formats are for levels/sectioning.
+
+    name: str = &#34;&#34;
+    &#34;&#34;&#34;Term or section title.&#34;&#34;&#34;
+
+    slug: str = &#34;&#34;
+    &#34;&#34;&#34;Unique ID of this reference (should include `kind` + `name`).&#34;&#34;&#34;
+
+    kind: Division = field(default=Section)
+    &#34;&#34;&#34;What kind of reference is this?&#34;&#34;&#34;
+
+    values: List[int] = field(default_factory=list)
+    &#34;&#34;&#34;Citation numeral values.&#34;&#34;&#34;
+
+    numerals: List[NumFormat] = field(default_factory=list)
+    &#34;&#34;&#34;Citation numeral formats.&#34;&#34;&#34;
+
+    defines: List[RefFormat] = field(default_factory=list)
+    &#34;&#34;&#34;Definition formats.&#34;&#34;&#34;
+
+    refers: List[RefFormat] = field(default_factory=list)
+    &#34;&#34;&#34;Reference formats.&#34;&#34;&#34;
+
+    is_defined: bool = False
+    &#34;&#34;&#34;Whether or not this reference has been defined.&#34;&#34;&#34;
+
+    def copy(self) -&gt; Ref:
+        &#34;&#34;&#34;Return a copy of this reference.&#34;&#34;&#34;
+        return Ref(
+            name=self.name,
+            slug=self.slug,
+            kind=self.kind,
+            values=self.values.copy(),
+            numerals=self.numerals.copy(),
+            defines=self.defines.copy(),
+            refers=self.refers.copy(),
+        )
+
+    def update_slug(self, slug: str = &#34;&#34;) -&gt; Ref:
+        &#34;&#34;&#34;Update the slug when the name or citation has changed.&#34;&#34;&#34;
+        if slug:
+            self.slug = slugify(slug)
+        elif self.name:
+            self.slug = slugify(f&#34;{self.kind}-{self.name}&#34;)
+        else:
+            self.slug = slugify(f&#34;{self.kind}-{self.cite}&#34;)
+        return self
+
+    @property
+    def cite(self) -&gt; str:
+        &#34;&#34;&#34;Return a citation (without the `kind`) to this reference.&#34;&#34;&#34;
+        return &#34;&#34;.join(
+            num(val, idx &gt; 0)
+            for idx, (val, num) in enumerate(zip(self.values, self.numerals))
+        )
+
+    @property
+    def above_below(self) -&gt; str:
+        &#34;&#34;&#34;Return &#39;above&#39; if defined, otherwise &#39;below&#39;.&#34;&#34;&#34;
+        return &#34;above&#34; if self.is_defined else &#34;below&#34;
+
+    def define(self) -&gt; str:
+        &#34;&#34;&#34;Return the reference definition.&#34;&#34;&#34;
+        if self.is_defined:
+            raise Exception(f&#34;{self.kind} {self.slug} already defined&#34;)
+        self.is_defined = True
+
+        refer = self.kind.refer if len(self.refers) == 0 else self.refers[-1]
+        define = self.kind.define if len(self.defines) == 0 else self.defines[-1]
+        return f&#34;&#34;&#34;&lt;span class=&#34;def&#34; id=&#34;{self.slug}&#34; data-kind=&#34;{self.kind}&#34;
+                    data-cite=&#34;{refer(self).strip()}&#34;&gt;{define(self).strip()}&lt;/span&gt;&#34;&#34;&#34;
+
+    def refer(self) -&gt; str:
+        &#34;&#34;&#34;Return a link to the reference definition.&#34;&#34;&#34;
+        refer = self.kind.refer if len(self.refers) == 0 else self.refers[-1]
+        return f&#34;&#34;&#34;&lt;a class=&#34;ref&#34; href=&#34;#{self.slug}&#34;
+                    data-kind=&#34;{self.kind}&#34;&gt;{refer(self).strip()}&lt;/a&gt;&#34;&#34;&#34;
+        # return f&#34;&#34;&#34;&lt;a class=&#34;ref&#34; href=&#34;#{self.slug}&#34; data-kind=&#34;{self.kind}&#34;&gt;&lt;/a&gt;&#34;&#34;&#34;
+
+    __str__ = refer
+
+
+class Refs:
+    &#34;&#34;&#34;Reference manager.&#34;&#34;&#34;
+
+    stack: List[Ref]
+    &#34;&#34;&#34;Current document levels.&#34;&#34;&#34;
+
+    store: Dict[str, Ref]
+    &#34;&#34;&#34;Slugs mapped to references.&#34;&#34;&#34;
+
+    def __init__(self) -&gt; None:
+        &#34;&#34;&#34;Construct a new reference manager.&#34;&#34;&#34;
+        self.reset()
+
+    def reset(self) -&gt; Refs:
+        &#34;&#34;&#34;Reset the references.&#34;&#34;&#34;
+        self.stack = []
+        self.store = {}
+        return self
+
+    @property
+    def undefined(self) -&gt; List[Ref]:
+        &#34;&#34;&#34;References that were never defined.&#34;&#34;&#34;
+        return [ref for ref in self.store.values() if not ref.is_defined]
+
+    @property
+    def current(self) -&gt; Ref:
+        &#34;&#34;&#34;Reference to current level.&#34;&#34;&#34;
+        return Ref() if len(self.stack) == 0 else self.stack[-1]
+
+    def push(
+        self,
+        kind: Union[str, Division] = Section,
+        # formatting overrides
+        numeral: Union[str, NumFormat, None] = None,
+        define: Union[str, RefFormat, None] = None,
+        refer: Union[str, RefFormat, None] = None,
+    ) -&gt; Refs:
+        &#34;&#34;&#34;Add another level.&#34;&#34;&#34;
+        level = self.current.copy()
+        level.kind = Division.get(kind) or Section
+        level.values.append(0)
+        level.numerals.append(NumFormat.get(numeral, level.kind.numeral))
+        level.defines.append(RefFormat.get(define, level.kind.define))
+        level.refers.append(RefFormat.get(refer, level.kind.refer))
+        self.stack.append(level)
+        return self
+
+    def up(self, name: str = &#34;&#34;, slug: str = &#34;&#34;) -&gt; Ref:
+        &#34;&#34;&#34;Increment current level.&#34;&#34;&#34;
+        ref = self.current.copy()
+        ref.name = name
+        ref.values[-1] += 1
+        ref.update_slug(slug)  # needs name &amp; values updated
+        self.stack[-1] = ref
+        self.store[ref.slug] = ref
+        return ref
+
+    def pop(self, num: int = 1) -&gt; Refs:
+        &#34;&#34;&#34;Remove one or more level.&#34;&#34;&#34;
+        for _ in range(num):
+            if len(self.stack) == 0:
+                break
+            self.stack.pop()
+        return self
+
+    ## Short-hand
+    def add(self, ref: Ref) -&gt; Ref:
+        &#34;&#34;&#34;Add a ref to the store.&#34;&#34;&#34;
+        self.store[ref.slug] = ref
+        return ref
+
+    def term(self, name: str) -&gt; Ref:
+        &#34;&#34;&#34;Refer to a terms.&#34;&#34;&#34;
+        slug = slugify(&#34;term&#34;, name)
+        if slug in self.store:
+            return self.store[slug]
+        return self.add(Ref(name=name, kind=Term).update_slug())
+
+    def see(self, name: str = &#34;&#34;, kind: str = &#34;Section&#34;, slug: str = &#34;&#34;) -&gt; Ref:
+        &#34;&#34;&#34;Refer to a reference.&#34;&#34;&#34;
+        if slug in self.store:
+            return self.store[slug]
+        return self.add(Ref(name=name, kind=Division.get(kind)).update_slug(slug))</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="inkfill.xref.RE_NON_SLUG"><code class="name">var <span class="ident">RE_NON_SLUG</span></code></dt>
+<dd>
+<div class="desc"><p>Match characters to convert to dash in a slug.</p></div>
+</dd>
+<dt id="inkfill.xref.RE_REPEATED_DASH"><code class="name">var <span class="ident">RE_REPEATED_DASH</span></code></dt>
+<dd>
+<div class="desc"><p>Match repeated dashes.</p></div>
+</dd>
+<dt id="inkfill.xref.DOUBLE_QUOTES"><code class="name">var <span class="ident">DOUBLE_QUOTES</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Enclose <code>name</code> in double quotes (e.g., define a <code><a title="inkfill.xref.Term" href="#inkfill.xref.Term">Term</a></code>).</p></div>
+</dd>
+<dt id="inkfill.xref.TWO_LINE"><code class="name">var <span class="ident">TWO_LINE</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Show <code>kind</code>, <code>cite</code>, and <code>name</code> on two lines.</p></div>
+</dd>
+<dt id="inkfill.xref.CITE_NAME"><code class="name">var <span class="ident">CITE_NAME</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Show full citation and the name (e.g., define <code>Part</code>, <code>Section</code>, <code><a title="inkfill.xref.Subsection" href="#inkfill.xref.Subsection">Subsection</a></code>).</p></div>
+</dd>
+<dt id="inkfill.xref.CITE_LAST"><code class="name">var <span class="ident">CITE_LAST</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Show only the end of the citation (e.g., define <code><a title="inkfill.xref.Paragraph" href="#inkfill.xref.Paragraph">Paragraph</a></code>, <code><a title="inkfill.xref.Clause" href="#inkfill.xref.Clause">Clause</a></code>).</p></div>
+</dd>
+<dt id="inkfill.xref.NAME_ONLY"><code class="name">var <span class="ident">NAME_ONLY</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Show only the name (e.g., refer to a <code><a title="inkfill.xref.Term" href="#inkfill.xref.Term">Term</a></code>).</p></div>
+</dd>
+<dt id="inkfill.xref.Term"><code class="name">var <span class="ident">Term</span></code></dt>
+<dd>
+<div class="desc"><p>Defined term.</p></div>
+</dd>
+<dt id="inkfill.xref.Article"><code class="name">var <span class="ident">Article</span></code></dt>
+<dd>
+<div class="desc"><p>Often the top-most level.</p></div>
+</dd>
+<dt id="inkfill.xref.Subsection"><code class="name">var <span class="ident">Subsection</span></code></dt>
+<dd>
+<div class="desc"><p>Subdivision of a section.</p></div>
+</dd>
+<dt id="inkfill.xref.Paragraph"><code class="name">var <span class="ident">Paragraph</span></code></dt>
+<dd>
+<div class="desc"><p>Items within a subsection.</p></div>
+</dd>
+<dt id="inkfill.xref.Item"><code class="name">var <span class="ident">Item</span></code></dt>
+<dd>
+<div class="desc"><p>Similar to a paragraph.</p></div>
+</dd>
+<dt id="inkfill.xref.Clause"><code class="name">var <span class="ident">Clause</span></code></dt>
+<dd>
+<div class="desc"><p>Items within a paragraph.</p></div>
+</dd>
+<dt id="inkfill.xref.Exhibit"><code class="name">var <span class="ident">Exhibit</span></code></dt>
+<dd>
+<div class="desc"><p>Supporting document.</p></div>
+</dd>
+<dt id="inkfill.xref.Appendix"><code class="name">var <span class="ident">Appendix</span></code></dt>
+<dd>
+<div class="desc"><p>Additional details.</p></div>
+</dd>
+<dt id="inkfill.xref.Annex"><code class="name">var <span class="ident">Annex</span></code></dt>
+<dd>
+<div class="desc"><p>Substantial appendix.</p></div>
+</dd>
+<dt id="inkfill.xref.Schedule"><code class="name">var <span class="ident">Schedule</span></code></dt>
+<dd>
+<div class="desc"><p>Supplementary material.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="inkfill.xref.slugify"><code class="name flex">
+<span>def <span class="ident">slugify</span></span>(<span>*names: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a slug version of a name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def slugify(*names: str) -&gt; str:
+    &#34;&#34;&#34;Return a slug version of a name.&#34;&#34;&#34;
+    return RE_REPEATED_DASH.sub(
+        &#34;-&#34;, RE_NON_SLUG.sub(&#34;-&#34;, &#34;-&#34;.join(names).lower())
+    ).strip(&#34;-&#34;)</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.cite_name"><code class="name flex">
+<span>def <span class="ident">cite_name</span></span>(<span>ref: <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a>) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return citation format for most section headings.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cite_name(ref: Ref) -&gt; str:
+    &#34;&#34;&#34;Return citation format for most section headings.&#34;&#34;&#34;
+    cite = ref.cite
+    if &#34;.&#34; not in cite and not cite.endswith(&#34;)&#34;):
+        cite += &#34;.&#34;
+    return f&#34;{cite} {ref.name}&#34;.strip()</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="inkfill.xref.RefFormat"><code class="flex name class">
+<span>class <span class="ident">RefFormat</span></span>
+<span>(</span><span>name: str, render: Callable[[<a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a>], str])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reference format.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RefFormat(Registrable):
+    &#34;&#34;&#34;Reference format.&#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;Reference format name.&#34;&#34;&#34;
+
+    render: Callable[[Ref], str]
+    &#34;&#34;&#34;Render the reference.&#34;&#34;&#34;
+
+    def __call__(self, ref: Ref) -&gt; str:
+        &#34;&#34;&#34;Render the reference.&#34;&#34;&#34;
+        return self.render(ref)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="inkfill.xref.RefFormat.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code>.<code><a title="inkfill.registry.Registrable.name" href="registry.html#inkfill.registry.Registrable.name">name</a></code>
+</p>
+<div class="desc inherited"><p>Name of this object.</p></div>
+</dd>
+<dt id="inkfill.xref.RefFormat.render"><code class="name">var <span class="ident">render</span> : Callable[[<a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a>], str]</code></dt>
+<dd>
+<div class="desc"><p>Render the reference.</p></div>
+</dd>
+<dt id="inkfill.xref.RefFormat.DEFAULT"><code class="name">var <span class="ident">DEFAULT</span> : <a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code>.<code><a title="inkfill.registry.Registrable.DEFAULT" href="registry.html#inkfill.registry.Registrable.DEFAULT">DEFAULT</a></code>
+</p>
+<div class="desc inherited"><p>Default value of this type.</p></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="inkfill.xref.RefFormat.get"><code class="name flex">
+<span>def <span class="ident">get</span></span>(<span>name: Union[str, <a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a>], default: Optional[<a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a>] = None) ‑> ~<a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a></span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code>.<code><a title="inkfill.registry.Registrable.get" href="registry.html#inkfill.registry.Registrable.get">get</a></code>
+</p>
+<div class="desc inherited"><p>Get the requested named object.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="inkfill.xref.RefFormat.add"><code class="name flex">
+<span>def <span class="ident">add</span></span>(<span>self: <a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a>, override: bool = False) ‑> ~<a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a></span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code>.<code><a title="inkfill.registry.Registrable.add" href="registry.html#inkfill.registry.Registrable.add">add</a></code>
+</p>
+<div class="desc inherited"><p>Add this name to the registry.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="inkfill.xref.Division"><code class="flex name class">
+<span>class <span class="ident">Division</span></span>
+<span>(</span><span>name: str, numeral: NumFormat = NumFormat(name=&#x27;decimal&#x27;, numeral=&lt;function to_decimal&gt;, prefix=&#x27;.&#x27;, suffix=&#x27;&#x27;), define: <a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a> = RefFormat(name=&#x27;cite-name&#x27;, render=&lt;function cite_name&gt;), refer: <a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a> = RefFormat(name=&#x27;kind-cite&#x27;, render=&lt;function &lt;lambda&gt;&gt;))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Document section.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Division(Registrable):
+    &#34;&#34;&#34;Document section.&#34;&#34;&#34;
+
+    name: str
+    &#34;&#34;&#34;Name of this kind.&#34;&#34;&#34;
+
+    numeral: NumFormat = field(default=DECIMAL)
+    &#34;&#34;&#34;Default numeral formatting for this kind.&#34;&#34;&#34;
+
+    define: RefFormat = field(default=CITE_NAME)
+    &#34;&#34;&#34;Default formatting for defining a reference of this type.&#34;&#34;&#34;
+
+    refer: RefFormat = field(default=CITE_FULL)
+    &#34;&#34;&#34;Default formatting for referring to a reference of this type.&#34;&#34;&#34;
+
+    def __str__(self) -&gt; str:
+        return self.name</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="inkfill.xref.Division.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code>.<code><a title="inkfill.registry.Registrable.name" href="registry.html#inkfill.registry.Registrable.name">name</a></code>
+</p>
+<div class="desc inherited"><p>Name of this object.</p></div>
+</dd>
+<dt id="inkfill.xref.Division.numeral"><code class="name">var <span class="ident">numeral</span> : <a title="inkfill.numerals.NumFormat" href="numerals.html#inkfill.numerals.NumFormat">NumFormat</a></code></dt>
+<dd>
+<div class="desc"><p>Default numeral formatting for this kind.</p></div>
+</dd>
+<dt id="inkfill.xref.Division.define"><code class="name">var <span class="ident">define</span> : <a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a></code></dt>
+<dd>
+<div class="desc"><p>Default formatting for defining a reference of this type.</p></div>
+</dd>
+<dt id="inkfill.xref.Division.refer"><code class="name">var <span class="ident">refer</span> : <a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a></code></dt>
+<dd>
+<div class="desc"><p>Default formatting for referring to a reference of this type.</p></div>
+</dd>
+<dt id="inkfill.xref.Division.DEFAULT"><code class="name">var <span class="ident">DEFAULT</span> : <a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code>.<code><a title="inkfill.registry.Registrable.DEFAULT" href="registry.html#inkfill.registry.Registrable.DEFAULT">DEFAULT</a></code>
+</p>
+<div class="desc inherited"><p>Default value of this type.</p></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="inkfill.xref.Division.get"><code class="name flex">
+<span>def <span class="ident">get</span></span>(<span>name: Union[str, <a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a>], default: Optional[<a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a>] = None) ‑> ~<a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a></span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code>.<code><a title="inkfill.registry.Registrable.get" href="registry.html#inkfill.registry.Registrable.get">get</a></code>
+</p>
+<div class="desc inherited"><p>Get the requested named object.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="inkfill.xref.Division.add"><code class="name flex">
+<span>def <span class="ident">add</span></span>(<span>self: <a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a>, override: bool = False) ‑> ~<a title="inkfill.registry.T" href="registry.html#inkfill.registry.T">T</a></span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="inkfill.registry.Registrable" href="registry.html#inkfill.registry.Registrable">Registrable</a></code>.<code><a title="inkfill.registry.Registrable.add" href="registry.html#inkfill.registry.Registrable.add">add</a></code>
+</p>
+<div class="desc inherited"><p>Add this name to the registry.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="inkfill.xref.Ref"><code class="flex name class">
+<span>class <span class="ident">Ref</span></span>
+<span>(</span><span>name: str = '', slug: str = '', kind: <a title="inkfill.xref.Division" href="#inkfill.xref.Division">Division</a> = Division(name=&#x27;Section&#x27;, numeral=NumFormat(name=&#x27;decimal&#x27;, numeral=&lt;function to_decimal&gt;, prefix=&#x27;.&#x27;, suffix=&#x27;&#x27;), define=RefFormat(name=&#x27;cite-name&#x27;, render=&lt;function cite_name&gt;), refer=RefFormat(name=&#x27;kind-cite&#x27;, render=&lt;function &lt;lambda&gt;&gt;)), values: List[int] = &lt;factory&gt;, numerals: List[NumFormat] = &lt;factory&gt;, defines: List[<a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a>] = &lt;factory&gt;, refers: List[<a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a>] = &lt;factory&gt;, is_defined: bool = False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reference to a term or section of a document.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Ref:
+    &#34;&#34;&#34;Reference to a term or section of a document.&#34;&#34;&#34;
+
+    # `name` and `slug` are for referencing
+    # `kind` and formats are for levels/sectioning.
+
+    name: str = &#34;&#34;
+    &#34;&#34;&#34;Term or section title.&#34;&#34;&#34;
+
+    slug: str = &#34;&#34;
+    &#34;&#34;&#34;Unique ID of this reference (should include `kind` + `name`).&#34;&#34;&#34;
+
+    kind: Division = field(default=Section)
+    &#34;&#34;&#34;What kind of reference is this?&#34;&#34;&#34;
+
+    values: List[int] = field(default_factory=list)
+    &#34;&#34;&#34;Citation numeral values.&#34;&#34;&#34;
+
+    numerals: List[NumFormat] = field(default_factory=list)
+    &#34;&#34;&#34;Citation numeral formats.&#34;&#34;&#34;
+
+    defines: List[RefFormat] = field(default_factory=list)
+    &#34;&#34;&#34;Definition formats.&#34;&#34;&#34;
+
+    refers: List[RefFormat] = field(default_factory=list)
+    &#34;&#34;&#34;Reference formats.&#34;&#34;&#34;
+
+    is_defined: bool = False
+    &#34;&#34;&#34;Whether or not this reference has been defined.&#34;&#34;&#34;
+
+    def copy(self) -&gt; Ref:
+        &#34;&#34;&#34;Return a copy of this reference.&#34;&#34;&#34;
+        return Ref(
+            name=self.name,
+            slug=self.slug,
+            kind=self.kind,
+            values=self.values.copy(),
+            numerals=self.numerals.copy(),
+            defines=self.defines.copy(),
+            refers=self.refers.copy(),
+        )
+
+    def update_slug(self, slug: str = &#34;&#34;) -&gt; Ref:
+        &#34;&#34;&#34;Update the slug when the name or citation has changed.&#34;&#34;&#34;
+        if slug:
+            self.slug = slugify(slug)
+        elif self.name:
+            self.slug = slugify(f&#34;{self.kind}-{self.name}&#34;)
+        else:
+            self.slug = slugify(f&#34;{self.kind}-{self.cite}&#34;)
+        return self
+
+    @property
+    def cite(self) -&gt; str:
+        &#34;&#34;&#34;Return a citation (without the `kind`) to this reference.&#34;&#34;&#34;
+        return &#34;&#34;.join(
+            num(val, idx &gt; 0)
+            for idx, (val, num) in enumerate(zip(self.values, self.numerals))
+        )
+
+    @property
+    def above_below(self) -&gt; str:
+        &#34;&#34;&#34;Return &#39;above&#39; if defined, otherwise &#39;below&#39;.&#34;&#34;&#34;
+        return &#34;above&#34; if self.is_defined else &#34;below&#34;
+
+    def define(self) -&gt; str:
+        &#34;&#34;&#34;Return the reference definition.&#34;&#34;&#34;
+        if self.is_defined:
+            raise Exception(f&#34;{self.kind} {self.slug} already defined&#34;)
+        self.is_defined = True
+
+        refer = self.kind.refer if len(self.refers) == 0 else self.refers[-1]
+        define = self.kind.define if len(self.defines) == 0 else self.defines[-1]
+        return f&#34;&#34;&#34;&lt;span class=&#34;def&#34; id=&#34;{self.slug}&#34; data-kind=&#34;{self.kind}&#34;
+                    data-cite=&#34;{refer(self).strip()}&#34;&gt;{define(self).strip()}&lt;/span&gt;&#34;&#34;&#34;
+
+    def refer(self) -&gt; str:
+        &#34;&#34;&#34;Return a link to the reference definition.&#34;&#34;&#34;
+        refer = self.kind.refer if len(self.refers) == 0 else self.refers[-1]
+        return f&#34;&#34;&#34;&lt;a class=&#34;ref&#34; href=&#34;#{self.slug}&#34;
+                    data-kind=&#34;{self.kind}&#34;&gt;{refer(self).strip()}&lt;/a&gt;&#34;&#34;&#34;
+        # return f&#34;&#34;&#34;&lt;a class=&#34;ref&#34; href=&#34;#{self.slug}&#34; data-kind=&#34;{self.kind}&#34;&gt;&lt;/a&gt;&#34;&#34;&#34;
+
+    __str__ = refer</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="inkfill.xref.Ref.values"><code class="name">var <span class="ident">values</span> : List[int]</code></dt>
+<dd>
+<div class="desc"><p>Citation numeral values.</p></div>
+</dd>
+<dt id="inkfill.xref.Ref.numerals"><code class="name">var <span class="ident">numerals</span> : List[<a title="inkfill.numerals.NumFormat" href="numerals.html#inkfill.numerals.NumFormat">NumFormat</a>]</code></dt>
+<dd>
+<div class="desc"><p>Citation numeral formats.</p></div>
+</dd>
+<dt id="inkfill.xref.Ref.defines"><code class="name">var <span class="ident">defines</span> : List[<a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a>]</code></dt>
+<dd>
+<div class="desc"><p>Definition formats.</p></div>
+</dd>
+<dt id="inkfill.xref.Ref.refers"><code class="name">var <span class="ident">refers</span> : List[<a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a>]</code></dt>
+<dd>
+<div class="desc"><p>Reference formats.</p></div>
+</dd>
+<dt id="inkfill.xref.Ref.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Term or section title.</p></div>
+</dd>
+<dt id="inkfill.xref.Ref.slug"><code class="name">var <span class="ident">slug</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Unique ID of this reference (should include <code>kind</code> + <code>name</code>).</p></div>
+</dd>
+<dt id="inkfill.xref.Ref.kind"><code class="name">var <span class="ident">kind</span> : <a title="inkfill.xref.Division" href="#inkfill.xref.Division">Division</a></code></dt>
+<dd>
+<div class="desc"><p>What kind of reference is this?</p></div>
+</dd>
+<dt id="inkfill.xref.Ref.is_defined"><code class="name">var <span class="ident">is_defined</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Whether or not this reference has been defined.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="inkfill.xref.Ref.cite"><code class="name">var <span class="ident">cite</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return a citation (without the <code>kind</code>) to this reference.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def cite(self) -&gt; str:
+    &#34;&#34;&#34;Return a citation (without the `kind`) to this reference.&#34;&#34;&#34;
+    return &#34;&#34;.join(
+        num(val, idx &gt; 0)
+        for idx, (val, num) in enumerate(zip(self.values, self.numerals))
+    )</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Ref.above_below"><code class="name">var <span class="ident">above_below</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return 'above' if defined, otherwise 'below'.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def above_below(self) -&gt; str:
+    &#34;&#34;&#34;Return &#39;above&#39; if defined, otherwise &#39;below&#39;.&#34;&#34;&#34;
+    return &#34;above&#34; if self.is_defined else &#34;below&#34;</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="inkfill.xref.Ref.copy"><code class="name flex">
+<span>def <span class="ident">copy</span></span>(<span>self) ‑> <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a copy of this reference.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def copy(self) -&gt; Ref:
+    &#34;&#34;&#34;Return a copy of this reference.&#34;&#34;&#34;
+    return Ref(
+        name=self.name,
+        slug=self.slug,
+        kind=self.kind,
+        values=self.values.copy(),
+        numerals=self.numerals.copy(),
+        defines=self.defines.copy(),
+        refers=self.refers.copy(),
+    )</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Ref.update_slug"><code class="name flex">
+<span>def <span class="ident">update_slug</span></span>(<span>self, slug: str = '') ‑> <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update the slug when the name or citation has changed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_slug(self, slug: str = &#34;&#34;) -&gt; Ref:
+    &#34;&#34;&#34;Update the slug when the name or citation has changed.&#34;&#34;&#34;
+    if slug:
+        self.slug = slugify(slug)
+    elif self.name:
+        self.slug = slugify(f&#34;{self.kind}-{self.name}&#34;)
+    else:
+        self.slug = slugify(f&#34;{self.kind}-{self.cite}&#34;)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Ref.define"><code class="name flex">
+<span>def <span class="ident">define</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the reference definition.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def define(self) -&gt; str:
+    &#34;&#34;&#34;Return the reference definition.&#34;&#34;&#34;
+    if self.is_defined:
+        raise Exception(f&#34;{self.kind} {self.slug} already defined&#34;)
+    self.is_defined = True
+
+    refer = self.kind.refer if len(self.refers) == 0 else self.refers[-1]
+    define = self.kind.define if len(self.defines) == 0 else self.defines[-1]
+    return f&#34;&#34;&#34;&lt;span class=&#34;def&#34; id=&#34;{self.slug}&#34; data-kind=&#34;{self.kind}&#34;
+                data-cite=&#34;{refer(self).strip()}&#34;&gt;{define(self).strip()}&lt;/span&gt;&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Ref.refer"><code class="name flex">
+<span>def <span class="ident">refer</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a link to the reference definition.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def refer(self) -&gt; str:
+    &#34;&#34;&#34;Return a link to the reference definition.&#34;&#34;&#34;
+    refer = self.kind.refer if len(self.refers) == 0 else self.refers[-1]
+    return f&#34;&#34;&#34;&lt;a class=&#34;ref&#34; href=&#34;#{self.slug}&#34;
+                data-kind=&#34;{self.kind}&#34;&gt;{refer(self).strip()}&lt;/a&gt;&#34;&#34;&#34;
+    # return f&#34;&#34;&#34;&lt;a class=&#34;ref&#34; href=&#34;#{self.slug}&#34; data-kind=&#34;{self.kind}&#34;&gt;&lt;/a&gt;&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="inkfill.xref.Refs"><code class="flex name class">
+<span>class <span class="ident">Refs</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reference manager.</p>
+<p>Construct a new reference manager.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Refs:
+    &#34;&#34;&#34;Reference manager.&#34;&#34;&#34;
+
+    stack: List[Ref]
+    &#34;&#34;&#34;Current document levels.&#34;&#34;&#34;
+
+    store: Dict[str, Ref]
+    &#34;&#34;&#34;Slugs mapped to references.&#34;&#34;&#34;
+
+    def __init__(self) -&gt; None:
+        &#34;&#34;&#34;Construct a new reference manager.&#34;&#34;&#34;
+        self.reset()
+
+    def reset(self) -&gt; Refs:
+        &#34;&#34;&#34;Reset the references.&#34;&#34;&#34;
+        self.stack = []
+        self.store = {}
+        return self
+
+    @property
+    def undefined(self) -&gt; List[Ref]:
+        &#34;&#34;&#34;References that were never defined.&#34;&#34;&#34;
+        return [ref for ref in self.store.values() if not ref.is_defined]
+
+    @property
+    def current(self) -&gt; Ref:
+        &#34;&#34;&#34;Reference to current level.&#34;&#34;&#34;
+        return Ref() if len(self.stack) == 0 else self.stack[-1]
+
+    def push(
+        self,
+        kind: Union[str, Division] = Section,
+        # formatting overrides
+        numeral: Union[str, NumFormat, None] = None,
+        define: Union[str, RefFormat, None] = None,
+        refer: Union[str, RefFormat, None] = None,
+    ) -&gt; Refs:
+        &#34;&#34;&#34;Add another level.&#34;&#34;&#34;
+        level = self.current.copy()
+        level.kind = Division.get(kind) or Section
+        level.values.append(0)
+        level.numerals.append(NumFormat.get(numeral, level.kind.numeral))
+        level.defines.append(RefFormat.get(define, level.kind.define))
+        level.refers.append(RefFormat.get(refer, level.kind.refer))
+        self.stack.append(level)
+        return self
+
+    def up(self, name: str = &#34;&#34;, slug: str = &#34;&#34;) -&gt; Ref:
+        &#34;&#34;&#34;Increment current level.&#34;&#34;&#34;
+        ref = self.current.copy()
+        ref.name = name
+        ref.values[-1] += 1
+        ref.update_slug(slug)  # needs name &amp; values updated
+        self.stack[-1] = ref
+        self.store[ref.slug] = ref
+        return ref
+
+    def pop(self, num: int = 1) -&gt; Refs:
+        &#34;&#34;&#34;Remove one or more level.&#34;&#34;&#34;
+        for _ in range(num):
+            if len(self.stack) == 0:
+                break
+            self.stack.pop()
+        return self
+
+    ## Short-hand
+    def add(self, ref: Ref) -&gt; Ref:
+        &#34;&#34;&#34;Add a ref to the store.&#34;&#34;&#34;
+        self.store[ref.slug] = ref
+        return ref
+
+    def term(self, name: str) -&gt; Ref:
+        &#34;&#34;&#34;Refer to a terms.&#34;&#34;&#34;
+        slug = slugify(&#34;term&#34;, name)
+        if slug in self.store:
+            return self.store[slug]
+        return self.add(Ref(name=name, kind=Term).update_slug())
+
+    def see(self, name: str = &#34;&#34;, kind: str = &#34;Section&#34;, slug: str = &#34;&#34;) -&gt; Ref:
+        &#34;&#34;&#34;Refer to a reference.&#34;&#34;&#34;
+        if slug in self.store:
+            return self.store[slug]
+        return self.add(Ref(name=name, kind=Division.get(kind)).update_slug(slug))</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="inkfill.xref.Refs.stack"><code class="name">var <span class="ident">stack</span> : List[<a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a>]</code></dt>
+<dd>
+<div class="desc"><p>Current document levels.</p></div>
+</dd>
+<dt id="inkfill.xref.Refs.store"><code class="name">var <span class="ident">store</span> : Dict[str, <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a>]</code></dt>
+<dd>
+<div class="desc"><p>Slugs mapped to references.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="inkfill.xref.Refs.undefined"><code class="name">var <span class="ident">undefined</span> : List[<a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a>]</code></dt>
+<dd>
+<div class="desc"><p>References that were never defined.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def undefined(self) -&gt; List[Ref]:
+    &#34;&#34;&#34;References that were never defined.&#34;&#34;&#34;
+    return [ref for ref in self.store.values() if not ref.is_defined]</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Refs.current"><code class="name">var <span class="ident">current</span> : <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a></code></dt>
+<dd>
+<div class="desc"><p>Reference to current level.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def current(self) -&gt; Ref:
+    &#34;&#34;&#34;Reference to current level.&#34;&#34;&#34;
+    return Ref() if len(self.stack) == 0 else self.stack[-1]</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="inkfill.xref.Refs.reset"><code class="name flex">
+<span>def <span class="ident">reset</span></span>(<span>self) ‑> <a title="inkfill.xref.Refs" href="#inkfill.xref.Refs">Refs</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reset the references.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset(self) -&gt; Refs:
+    &#34;&#34;&#34;Reset the references.&#34;&#34;&#34;
+    self.stack = []
+    self.store = {}
+    return self</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Refs.push"><code class="name flex">
+<span>def <span class="ident">push</span></span>(<span>self, kind: Union[str, <a title="inkfill.xref.Division" href="#inkfill.xref.Division">Division</a>] = Division(name=&#x27;Section&#x27;, numeral=NumFormat(name=&#x27;decimal&#x27;, numeral=&lt;function to_decimal&gt;, prefix=&#x27;.&#x27;, suffix=&#x27;&#x27;), define=RefFormat(name=&#x27;cite-name&#x27;, render=&lt;function cite_name&gt;), refer=RefFormat(name=&#x27;kind-cite&#x27;, render=&lt;function &lt;lambda&gt;&gt;)), numeral: Union[str, NumFormat, None] = None, define: Union[str, <a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a>, None] = None, refer: Union[str, <a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a>, None] = None) ‑> <a title="inkfill.xref.Refs" href="#inkfill.xref.Refs">Refs</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add another level.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def push(
+    self,
+    kind: Union[str, Division] = Section,
+    # formatting overrides
+    numeral: Union[str, NumFormat, None] = None,
+    define: Union[str, RefFormat, None] = None,
+    refer: Union[str, RefFormat, None] = None,
+) -&gt; Refs:
+    &#34;&#34;&#34;Add another level.&#34;&#34;&#34;
+    level = self.current.copy()
+    level.kind = Division.get(kind) or Section
+    level.values.append(0)
+    level.numerals.append(NumFormat.get(numeral, level.kind.numeral))
+    level.defines.append(RefFormat.get(define, level.kind.define))
+    level.refers.append(RefFormat.get(refer, level.kind.refer))
+    self.stack.append(level)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Refs.up"><code class="name flex">
+<span>def <span class="ident">up</span></span>(<span>self, name: str = '', slug: str = '') ‑> <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Increment current level.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def up(self, name: str = &#34;&#34;, slug: str = &#34;&#34;) -&gt; Ref:
+    &#34;&#34;&#34;Increment current level.&#34;&#34;&#34;
+    ref = self.current.copy()
+    ref.name = name
+    ref.values[-1] += 1
+    ref.update_slug(slug)  # needs name &amp; values updated
+    self.stack[-1] = ref
+    self.store[ref.slug] = ref
+    return ref</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Refs.pop"><code class="name flex">
+<span>def <span class="ident">pop</span></span>(<span>self, num: int = 1) ‑> <a title="inkfill.xref.Refs" href="#inkfill.xref.Refs">Refs</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remove one or more level.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pop(self, num: int = 1) -&gt; Refs:
+    &#34;&#34;&#34;Remove one or more level.&#34;&#34;&#34;
+    for _ in range(num):
+        if len(self.stack) == 0:
+            break
+        self.stack.pop()
+    return self</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Refs.add"><code class="name flex">
+<span>def <span class="ident">add</span></span>(<span>self, ref: <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a>) ‑> <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a ref to the store.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add(self, ref: Ref) -&gt; Ref:
+    &#34;&#34;&#34;Add a ref to the store.&#34;&#34;&#34;
+    self.store[ref.slug] = ref
+    return ref</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Refs.term"><code class="name flex">
+<span>def <span class="ident">term</span></span>(<span>self, name: str) ‑> <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Refer to a terms.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def term(self, name: str) -&gt; Ref:
+    &#34;&#34;&#34;Refer to a terms.&#34;&#34;&#34;
+    slug = slugify(&#34;term&#34;, name)
+    if slug in self.store:
+        return self.store[slug]
+    return self.add(Ref(name=name, kind=Term).update_slug())</code></pre>
+</details>
+</dd>
+<dt id="inkfill.xref.Refs.see"><code class="name flex">
+<span>def <span class="ident">see</span></span>(<span>self, name: str = '', kind: str = 'Section', slug: str = '') ‑> <a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Refer to a reference.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def see(self, name: str = &#34;&#34;, kind: str = &#34;Section&#34;, slug: str = &#34;&#34;) -&gt; Ref:
+    &#34;&#34;&#34;Refer to a reference.&#34;&#34;&#34;
+    if slug in self.store:
+        return self.store[slug]
+    return self.add(Ref(name=name, kind=Division.get(kind)).update_slug(slug))</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="inkfill" href="index.html">inkfill</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="two-column">
+<li><code><a title="inkfill.xref.RE_NON_SLUG" href="#inkfill.xref.RE_NON_SLUG">RE_NON_SLUG</a></code></li>
+<li><code><a title="inkfill.xref.RE_REPEATED_DASH" href="#inkfill.xref.RE_REPEATED_DASH">RE_REPEATED_DASH</a></code></li>
+<li><code><a title="inkfill.xref.DOUBLE_QUOTES" href="#inkfill.xref.DOUBLE_QUOTES">DOUBLE_QUOTES</a></code></li>
+<li><code><a title="inkfill.xref.TWO_LINE" href="#inkfill.xref.TWO_LINE">TWO_LINE</a></code></li>
+<li><code><a title="inkfill.xref.CITE_NAME" href="#inkfill.xref.CITE_NAME">CITE_NAME</a></code></li>
+<li><code><a title="inkfill.xref.CITE_LAST" href="#inkfill.xref.CITE_LAST">CITE_LAST</a></code></li>
+<li><code><a title="inkfill.xref.NAME_ONLY" href="#inkfill.xref.NAME_ONLY">NAME_ONLY</a></code></li>
+<li><code><a title="inkfill.xref.Term" href="#inkfill.xref.Term">Term</a></code></li>
+<li><code><a title="inkfill.xref.Article" href="#inkfill.xref.Article">Article</a></code></li>
+<li><code><a title="inkfill.xref.Subsection" href="#inkfill.xref.Subsection">Subsection</a></code></li>
+<li><code><a title="inkfill.xref.Paragraph" href="#inkfill.xref.Paragraph">Paragraph</a></code></li>
+<li><code><a title="inkfill.xref.Item" href="#inkfill.xref.Item">Item</a></code></li>
+<li><code><a title="inkfill.xref.Clause" href="#inkfill.xref.Clause">Clause</a></code></li>
+<li><code><a title="inkfill.xref.Exhibit" href="#inkfill.xref.Exhibit">Exhibit</a></code></li>
+<li><code><a title="inkfill.xref.Appendix" href="#inkfill.xref.Appendix">Appendix</a></code></li>
+<li><code><a title="inkfill.xref.Annex" href="#inkfill.xref.Annex">Annex</a></code></li>
+<li><code><a title="inkfill.xref.Schedule" href="#inkfill.xref.Schedule">Schedule</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="inkfill.xref.slugify" href="#inkfill.xref.slugify">slugify</a></code></li>
+<li><code><a title="inkfill.xref.cite_name" href="#inkfill.xref.cite_name">cite_name</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="inkfill.xref.RefFormat" href="#inkfill.xref.RefFormat">RefFormat</a></code></h4>
+<ul class="">
+<li><code><a title="inkfill.xref.RefFormat.get" href="registry.html#inkfill.xref.RefFormat.get">get</a></code></li>
+<li><code><a title="inkfill.xref.RefFormat.add" href="registry.html#inkfill.xref.RefFormat.add">add</a></code></li>
+<li><code><a title="inkfill.xref.RefFormat.name" href="#inkfill.xref.RefFormat.name">name</a></code></li>
+<li><code><a title="inkfill.xref.RefFormat.render" href="#inkfill.xref.RefFormat.render">render</a></code></li>
+<li><code><a title="inkfill.xref.RefFormat.DEFAULT" href="#inkfill.xref.RefFormat.DEFAULT">DEFAULT</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="inkfill.xref.Division" href="#inkfill.xref.Division">Division</a></code></h4>
+<ul class="two-column">
+<li><code><a title="inkfill.xref.Division.get" href="registry.html#inkfill.xref.Division.get">get</a></code></li>
+<li><code><a title="inkfill.xref.Division.add" href="registry.html#inkfill.xref.Division.add">add</a></code></li>
+<li><code><a title="inkfill.xref.Division.name" href="#inkfill.xref.Division.name">name</a></code></li>
+<li><code><a title="inkfill.xref.Division.numeral" href="#inkfill.xref.Division.numeral">numeral</a></code></li>
+<li><code><a title="inkfill.xref.Division.define" href="#inkfill.xref.Division.define">define</a></code></li>
+<li><code><a title="inkfill.xref.Division.refer" href="#inkfill.xref.Division.refer">refer</a></code></li>
+<li><code><a title="inkfill.xref.Division.DEFAULT" href="#inkfill.xref.Division.DEFAULT">DEFAULT</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="inkfill.xref.Ref" href="#inkfill.xref.Ref">Ref</a></code></h4>
+<ul class="two-column">
+<li><code><a title="inkfill.xref.Ref.copy" href="#inkfill.xref.Ref.copy">copy</a></code></li>
+<li><code><a title="inkfill.xref.Ref.update_slug" href="#inkfill.xref.Ref.update_slug">update_slug</a></code></li>
+<li><code><a title="inkfill.xref.Ref.define" href="#inkfill.xref.Ref.define">define</a></code></li>
+<li><code><a title="inkfill.xref.Ref.refer" href="#inkfill.xref.Ref.refer">refer</a></code></li>
+<li><code><a title="inkfill.xref.Ref.cite" href="#inkfill.xref.Ref.cite">cite</a></code></li>
+<li><code><a title="inkfill.xref.Ref.above_below" href="#inkfill.xref.Ref.above_below">above_below</a></code></li>
+<li><code><a title="inkfill.xref.Ref.values" href="#inkfill.xref.Ref.values">values</a></code></li>
+<li><code><a title="inkfill.xref.Ref.numerals" href="#inkfill.xref.Ref.numerals">numerals</a></code></li>
+<li><code><a title="inkfill.xref.Ref.defines" href="#inkfill.xref.Ref.defines">defines</a></code></li>
+<li><code><a title="inkfill.xref.Ref.refers" href="#inkfill.xref.Ref.refers">refers</a></code></li>
+<li><code><a title="inkfill.xref.Ref.name" href="#inkfill.xref.Ref.name">name</a></code></li>
+<li><code><a title="inkfill.xref.Ref.slug" href="#inkfill.xref.Ref.slug">slug</a></code></li>
+<li><code><a title="inkfill.xref.Ref.kind" href="#inkfill.xref.Ref.kind">kind</a></code></li>
+<li><code><a title="inkfill.xref.Ref.is_defined" href="#inkfill.xref.Ref.is_defined">is_defined</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="inkfill.xref.Refs" href="#inkfill.xref.Refs">Refs</a></code></h4>
+<ul class="two-column">
+<li><code><a title="inkfill.xref.Refs.reset" href="#inkfill.xref.Refs.reset">reset</a></code></li>
+<li><code><a title="inkfill.xref.Refs.push" href="#inkfill.xref.Refs.push">push</a></code></li>
+<li><code><a title="inkfill.xref.Refs.up" href="#inkfill.xref.Refs.up">up</a></code></li>
+<li><code><a title="inkfill.xref.Refs.pop" href="#inkfill.xref.Refs.pop">pop</a></code></li>
+<li><code><a title="inkfill.xref.Refs.add" href="#inkfill.xref.Refs.add">add</a></code></li>
+<li><code><a title="inkfill.xref.Refs.term" href="#inkfill.xref.Refs.term">term</a></code></li>
+<li><code><a title="inkfill.xref.Refs.see" href="#inkfill.xref.Refs.see">see</a></code></li>
+<li><code><a title="inkfill.xref.Refs.undefined" href="#inkfill.xref.Refs.undefined">undefined</a></code></li>
+<li><code><a title="inkfill.xref.Refs.current" href="#inkfill.xref.Refs.current">current</a></code></li>
+<li><code><a title="inkfill.xref.Refs.stack" href="#inkfill.xref.Refs.stack">stack</a></code></li>
+<li><code><a title="inkfill.xref.Refs.store" href="#inkfill.xref.Refs.store">store</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
