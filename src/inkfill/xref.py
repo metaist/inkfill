@@ -7,6 +7,7 @@ from dataclasses import field
 from typing import Callable
 from typing import Dict
 from typing import List
+from typing import Optional
 from typing import Union
 import re
 
@@ -177,6 +178,9 @@ class Ref:
     refers: List[RefFormat] = field(default_factory=list)
     """Reference formats."""
 
+    parent: Optional[Ref] = None
+    """Parent reference."""
+
     is_defined: bool = False
     """Whether or not this reference has been defined."""
 
@@ -190,6 +194,7 @@ class Ref:
             numerals=self.numerals.copy(),
             defines=self.defines.copy(),
             refers=self.refers.copy(),
+            parent=self.parent,
         )
 
     def update_slug(self, slug: str = "") -> Ref:
@@ -275,6 +280,7 @@ class Refs:
     ) -> Refs:
         """Add another level."""
         level = self.current.copy()
+        level.parent = self.current
         level.kind = Division.get(kind) or Section
         level.values.append(0)
         level.numerals.append(NumFormat.get(numeral, level.kind.numeral))
@@ -312,7 +318,10 @@ class Refs:
         slug = slug or slugify(kind, name)
         if slug in self.store:
             return self.store[slug]
-        return self.add(Ref(name=name, kind=Division.get(kind)).update_slug(slug))
+
+        ref = Ref(name=name, kind=Division.get(kind), parent=self.current)
+        ref.update_slug(slug)
+        return self.add(ref)
 
     def term(self, name: str) -> Ref:
         """Refer to a terms."""
