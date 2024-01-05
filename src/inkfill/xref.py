@@ -52,7 +52,7 @@ def cite_name(ref: Ref, cite: str = "") -> str:
         cite += "."
     return f"""
         <span class="cite">{cite}</span>
-        <span class="name">{ref.name}</name>
+        <span class="name">{ref.name}</span>
     """
 
 
