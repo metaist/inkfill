@@ -1,3 +1,7 @@
+// inkfill 0.1.0 <https://metaist.github.io/inkfill/>
+// Copyright 2023-2024 Metaist LLC
+// @license MIT
+
 * {
   margin: 0;
   padding: 0;
@@ -87,6 +91,10 @@ p.resolved {
   display: none;
 }
 
+.debug {
+  border: 1px solid red;
+}
+
 .left {
   text-align: left;
 }
@@ -111,6 +119,19 @@ p.resolved {
   border-top: 1px solid black;
 }
 
+.def[data-kind="Term"] {
+  font-weight: bold;
+
+  &::before {
+    font-weight: normal;
+    content: "“";
+  }
+  &::after {
+    font-weight: normal;
+    content: "”";
+  }
+}
+
 a {
   color: blue;
   &:visited {
@@ -123,14 +144,14 @@ a[href^="#"] {
   text-decoration: none;
 
   &.ref {
-    &[data-kind="Exhibit"] {
+    &:not([data-kind="Term"]) {
       font-weight: bold;
       text-decoration: underline;
     }
 
-    &::after {
-      content: attr(data-kind) " " target-text(attr(href url));
-    }
+    // &::after {
+    //   content: attr(data-kind) " " target-text(attr(href url));
+    // }
   }
 }
 
