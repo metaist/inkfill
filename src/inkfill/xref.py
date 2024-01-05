@@ -119,7 +119,7 @@ Term = Division("Term", NumFormat.get(""), define=NAME_ONLY, refer=NAME_ONLY).ad
 # Divisions
 # https://weagree.com/clm/contracts/contract-structure-and-presentation/articles-sections-clause-numbering/
 
-Preamble = Division("Preamble", define=lambda ref: "", refer=NAME_ONLY).add()
+Preamble = Division("Preamble", define=RefFormat.get(""), refer=NAME_ONLY).add()
 """First section, typically unnumbered."""
 
 Article = Division("Article", NumFormat.get("upper-roman"), define=TWO_LINE).add()
