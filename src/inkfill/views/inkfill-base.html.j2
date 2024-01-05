@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{config.title}}</title>
 
-  <link rel="stylesheet/less" type="text/css" href="/static/index.less" />
+  <link rel="stylesheet/less" type="text/css" href="/static/inkfill.less" />
   {% block styles %}{% endblock %}
   {% block paged %}
   <style>
@@ -22,7 +22,7 @@
     }
   </style>
   {% endblock %}
-  <script src="https://cdn.jsdelivr.net/npm/less"></script>
+  <script src="/static/less.js"></script>
 </head>
 
 <body>
@@ -30,12 +30,18 @@
   {% block scripts %}{% endblock %}
   <script>
     [].slice.apply(document.querySelectorAll("a.ref")).forEach((link) => {
-      let ref = document.querySelector(link.getAttribute("href"));
-      let attr = link.getAttribute("data-attr") || "data-cite";
+      const href = link.getAttribute("href")
+      const ref = document.querySelector(href);
+      if (!ref) {
+        console.error("[inkfill] Could not find reference:", href)
+        return;
+      }
+
+      const attr = link.getAttribute("data-attr") || "data-cite";
       link.innerText = ref.getAttribute(attr);
     });
   </script>
-  <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+  <script src="/static/paged.polyfill.js"></script>
 </body>
 
 </html>
