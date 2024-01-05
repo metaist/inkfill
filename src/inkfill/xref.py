@@ -44,9 +44,9 @@ class RefFormat(Registrable):
         return self.render(ref)
 
 
-def cite_name(ref: Ref) -> str:
+def cite_name(ref: Ref, cite: str = "") -> str:
     """Return citation format for most section headings."""
-    cite = ref.cite
+    cite = cite or ref.cite
     if "." not in cite and not cite.endswith(")"):
         cite += "."
     return f"{cite} {ref.name}".strip()
@@ -62,18 +62,26 @@ TWO_LINE = RefFormat(
 ).add()
 """Show `kind`, `cite`, and `name` on two lines."""
 
-CITE_NAME = RefFormat("cite-name", cite_name).add()
-"""Show full citation and the name (e.g., define `Part`, `Section`, `Subsection`)."""
-
 CITE_LAST = RefFormat(
     "cite-last", lambda ref: ref.numerals[-1].render(ref.values[-1], True)
 ).add()
-"""Show only the end of the citation (e.g., define `Paragraph`, `Clause`)."""
+"""Show end of citation (e.g., define `Paragraph`, `Clause`)."""
+
+CITE_LAST_NAME = RefFormat(
+    "cite-last-name", lambda ref: cite_name(ref, CITE_LAST(ref))
+).add()
+"""Show end of citation and `name` (e.g., define `Part`)."""
+
+CITE_NAME = RefFormat("cite-name", cite_name).add()
+"""Show full citation and the name (e.g., define `Section`, `Subsection`)."""
 
 RefFormat.DEFAULT = CITE_FULL = RefFormat(
     "kind-cite", lambda ref: f"{ref.kind} {ref.cite}"
 ).add()
 """Show `kind` and `cite` (e.g., refer to non-`Term`)."""
+
+KIND_LAST = RefFormat("kind-last", lambda ref: f"{ref.kind} {CITE_LAST(ref)}").add()
+"""Show `kind` and the last part of the citation (e.g., refer to a `Part`)."""
 
 NAME_ONLY = RefFormat("name-only", lambda ref: ref.name).add()
 """Show only the name (e.g., refer to a `Term`)."""
@@ -107,7 +115,9 @@ Term = Division("Term", NumFormat.get(""), define=NAME_ONLY, refer=NAME_ONLY).ad
 Article = Division("Article", NumFormat.get("upper-roman"), define=TWO_LINE).add()
 """Often the top-most level."""
 
-Part = Division("Part", NumFormat.get("upper-alpha")).add()
+Part = Division(
+    "Part", NumFormat.get("upper-alpha"), define=CITE_LAST_NAME, refer=KIND_LAST
+).add()
 
 Division.DEFAULT = Section = Division("Section").add()
 """The most common and default level."""
