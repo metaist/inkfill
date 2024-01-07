@@ -45,9 +45,25 @@ class RefFormat(Registrable):
         return self.render(ref)
 
 
+def cite_sections(ref: Ref) -> str:
+    """Cite until top-level-like items."""
+    parent = ref
+    top_like = [Article, Part, Exhibit, Appendix, Annex, Schedule]
+    numerals: List[NumFormat] = []
+    values: List[int] = []
+    while parent.parent and parent.numerals and parent.kind not in top_like:
+        numerals.insert(0, parent.numerals[-1])
+        values.insert(0, parent.values[-1])
+        parent = parent.parent
+
+    return "".join(
+        num(val, idx > 0) for idx, (val, num) in enumerate(zip(values, numerals))
+    )
+
+
 def cite_name(ref: Ref, cite: str = "") -> str:
     """Return citation format for most section headings."""
-    cite = cite or ref.cite
+    cite = cite or cite_sections(ref)
     if "." not in cite and not cite.endswith(")"):
         cite += "."
     return f"""
@@ -76,6 +92,9 @@ CITE_LAST_NAME = RefFormat(
 ).add()
 """Show end of citation and `name` (e.g., define `Part`)."""
 
+CITE_SECTIONS = RefFormat("cite-sections", cite_sections).add()
+"""Show citations up to top-level-like."""
+
 CITE_NAME = RefFormat("cite-name", cite_name).add()
 """Show full citation and the name (e.g., define `Section`, `Subsection`)."""
 
@@ -86,6 +105,11 @@ RefFormat.DEFAULT = CITE_FULL = RefFormat(
 
 KIND_LAST = RefFormat("kind-last", lambda ref: f"{ref.kind} {CITE_LAST(ref)}").add()
 """Show `kind` and the last part of the citation (e.g., refer to a `Part`)."""
+
+KIND_SECTIONS = RefFormat(
+    "kind-sections", lambda ref: f"{ref.kind} {CITE_SECTIONS(ref)}"
+).add()
+"""Show `kind` and sections."""
 
 NAME_ONLY = RefFormat("name-only", lambda ref: ref.name).add()
 """Show only the name (e.g., refer to a `Term`)."""
@@ -129,10 +153,12 @@ Part = Division(
     "Part", NumFormat.get("upper-alpha"), define=CITE_LAST_NAME, refer=KIND_LAST
 ).add()
 
-Division.DEFAULT = Section = Division("Section").add()
+Division.DEFAULT = Section = Division(
+    "Section", define=CITE_NAME, refer=KIND_SECTIONS
+).add()
 """The most common and default level."""
 
-Subsection = Division("Subsection").add()
+Subsection = Division("Subsection", define=CITE_NAME, refer=KIND_SECTIONS).add()
 """Subdivision of a section."""
 
 Paragraph = Division("Paragraph", NumFormat.get("lower-alpha"), define=CITE_LAST).add()

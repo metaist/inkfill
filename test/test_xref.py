@@ -86,6 +86,16 @@ def test_refs_basic() -> None:
     refs.pop(0)  # no op
 
 
+def test_refs_section_within_part() -> None:
+    """Formatting nested references."""
+    refs = Refs()
+    refs.push("Article").up()
+    refs.push("Part").up()
+    refs.push("Section").up()
+    ref = refs.push("Section").up()
+    assert ">1.1<" in ref.refer()
+
+
 def test_refs_preamble() -> None:
     """Test Preamble formatting."""
     refs = Refs()
