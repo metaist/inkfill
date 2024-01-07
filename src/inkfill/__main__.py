@@ -35,9 +35,12 @@ import bottle
 from . import __version__
 from . import commafy
 from . import compound
-from . import nth_of_month_year
+from . import day_month_year
 from . import dollars
+from . import month_day_year
+from . import nth_of_month_year
 from . import NumFormat
+from . import plural
 from . import Refs
 from . import spell_number
 from . import to_cardinal
@@ -107,8 +110,13 @@ def setup_jinja() -> Environment:
     ]
 
     renderer = Environment(loader=FileSystemLoader(paths), undefined=StrictUndefined)
+
     renderer.filters["compound"] = compound
+    renderer.filters["plural"] = plural
+
     renderer.filters["day_of_month"] = nth_of_month_year
+    renderer.filters["day_month_year"] = day_month_year
+    renderer.filters["month_day_year"] = month_day_year
 
     renderer.filters["dollars"] = dollars
     renderer.filters["USD"] = USD
