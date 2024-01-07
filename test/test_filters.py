@@ -7,7 +7,7 @@ from datetime import datetime
 from inkfill import compound
 from inkfill import day_of_month
 from inkfill import dollars
-from inkfill import plural
+from inkfill import spell_number
 from inkfill import USD
 
 ## Dates
@@ -33,6 +33,15 @@ def test_compound() -> None:
     assert compound(["A", "B", "C"]) == "A, B, and C"
     assert compound(["A", "B", "C"], oxford=False) == "A, B and C"
     assert compound(["A", "B", "C"], "or") == "A, B, or C"
+
+
+def test_spell_number() -> None:
+    """Spell out numbers."""
+    assert spell_number(-10, "degree") == "negative ten (-10) degrees"
+    assert spell_number(-1, "degree") == "negative one (-1) degree"
+    assert spell_number(0, "dollar") == "zero (0) dollars"
+    assert spell_number(1, "day") == "one (1) day"
+    assert spell_number(10, "day") == "ten (10) days"
 
 
 ## Money

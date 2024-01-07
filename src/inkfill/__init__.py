@@ -16,6 +16,7 @@ from .filters import compound
 from .filters import day_of_month
 from .filters import dollars
 from .filters import plural
+from .filters import spell_number
 from .filters import USD
 
 from .xref import Division
@@ -44,6 +45,7 @@ __all__ = [
     "day_of_month",
     "dollars",
     "plural",
+    "spell_number",
     "USD",
     # xref
     "Division",

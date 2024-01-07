@@ -192,6 +192,12 @@ def plural(word: str) -> str:
     return f"{word}s"
 
 
+def spell_number(num: int, unit: str, units: str = "") -> str:
+    """Spell out the given number and units."""
+    units = units or plural(unit)
+    return f"{to_cardinal(num)} ({num}) {unit if abs(num) == 1 else units}"
+
+
 ## Money
 
 

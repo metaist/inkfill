@@ -39,6 +39,7 @@ from . import day_of_month
 from . import dollars
 from . import NumFormat
 from . import Refs
+from . import spell_number
 from . import to_cardinal
 from . import USD
 
@@ -106,13 +107,16 @@ def setup_jinja() -> Environment:
     ]
 
     renderer = Environment(loader=FileSystemLoader(paths), undefined=StrictUndefined)
-    renderer.filters["commafy"] = commafy
     renderer.filters["compound"] = compound
     renderer.filters["day_of_month"] = day_of_month
+
     renderer.filters["dollars"] = dollars
+    renderer.filters["USD"] = USD
+
+    renderer.filters["commafy"] = commafy
     renderer.filters["num_format"] = lambda num, format: NumFormat.get(format)(num)
     renderer.filters["say_number"] = to_cardinal
-    renderer.filters["USD"] = USD
+    renderer.filters["spell_number"] = spell_number
     return renderer
 
 
