@@ -15,6 +15,7 @@ _seed.py
 
 # run
 __pycache__
+.pdm-python
 
 # test
 .coverage

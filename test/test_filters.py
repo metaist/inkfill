@@ -7,6 +7,7 @@ from datetime import datetime
 from inkfill import compound
 from inkfill import day_of_month
 from inkfill import dollars
+from inkfill import plural
 from inkfill import USD
 
 ## Dates

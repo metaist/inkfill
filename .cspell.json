@@ -1,17 +1,28 @@
 {
   "version": "0.2",
   "words": [
+    "acropoleis",
+    "apophonic",
     "attrbox",
+    "biscotti",
+    "chilis",
     "commafy",
     "docopt",
+    "elfs",
     "ieth",
     "illions",
     "inkfill",
     "ldquo",
+    "Māori",
+    "mata",
+    "matzah",
     "Metaist",
     "MMXXIII",
     "MMXXIV",
     "mypy",
+    "panini",
+    "paninis",
+    "poleis",
     "pypa",
     "pypi",
     "pyright",
@@ -20,6 +31,7 @@
     "timeloop",
     "tmpl",
     "venv",
+    "waka",
     "webtest"
   ]
 }
