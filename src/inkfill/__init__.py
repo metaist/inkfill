@@ -13,7 +13,9 @@ from .numerals import to_ordinal
 from .numerals import to_roman
 
 from .filters import compound
-from .filters import day_of_month
+from .filters import nth_of_month_year
+from .filters import month_day_year
+from .filters import day_month_year
 from .filters import dollars
 from .filters import plural
 from .filters import spell_number
@@ -42,7 +44,9 @@ __all__ = [
     "to_roman",
     # filters
     "compound",
-    "day_of_month",
+    "nth_of_month_year",
+    "month_day_year",
+    "day_month_year",
     "dollars",
     "plural",
     "spell_number",

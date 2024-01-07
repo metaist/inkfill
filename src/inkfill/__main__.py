@@ -35,7 +35,7 @@ import bottle
 from . import __version__
 from . import commafy
 from . import compound
-from . import day_of_month
+from . import nth_of_month_year
 from . import dollars
 from . import NumFormat
 from . import Refs
@@ -108,7 +108,7 @@ def setup_jinja() -> Environment:
 
     renderer = Environment(loader=FileSystemLoader(paths), undefined=StrictUndefined)
     renderer.filters["compound"] = compound
-    renderer.filters["day_of_month"] = day_of_month
+    renderer.filters["day_of_month"] = nth_of_month_year
 
     renderer.filters["dollars"] = dollars
     renderer.filters["USD"] = USD

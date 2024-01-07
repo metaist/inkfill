@@ -13,9 +13,19 @@ from .numerals import to_nth
 ## Dates
 
 
-def day_of_month(dt: datetime) -> str:
+def nth_of_month_year(dt: datetime) -> str:
     """Return date as `{nth} day of {month} {year}`."""
     return f"{to_nth(dt.day)} day of {dt.strftime('%B %Y')}"
+
+
+def month_day_year(dt: datetime) -> str:
+    """Return date as `{month} {day}, {year}`."""
+    return dt.strftime(f"%B {dt.day}, %Y")
+
+
+def day_month_year(dt: datetime) -> str:
+    """Return date as `{day} {month} {year}."""
+    return dt.strftime("%d %B %Y")
 
 
 ## English

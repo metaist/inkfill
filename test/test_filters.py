@@ -5,7 +5,9 @@ from datetime import datetime
 
 # pkg
 from inkfill import compound
-from inkfill import day_of_month
+from inkfill import nth_of_month_year
+from inkfill import month_day_year
+from inkfill import day_month_year
 from inkfill import dollars
 from inkfill import spell_number
 from inkfill import USD
@@ -13,13 +15,31 @@ from inkfill import USD
 ## Dates
 
 
-def test_day_of_month() -> None:
+def test_nth_of_month_year() -> None:
     """Nth day of the month."""
-    assert day_of_month(datetime(2024, 1, 1)) == "1st day of January 2024"
-    assert day_of_month(datetime(2024, 1, 31)) == "31st day of January 2024"
-    assert day_of_month(datetime(2024, 2, 2)) == "2nd day of February 2024"
-    assert day_of_month(datetime(2024, 2, 3)) == "3rd day of February 2024"
-    assert day_of_month(datetime(2024, 2, 29)) == "29th day of February 2024"
+    assert nth_of_month_year(datetime(2024, 1, 1)) == "1st day of January 2024"
+    assert nth_of_month_year(datetime(2024, 1, 31)) == "31st day of January 2024"
+    assert nth_of_month_year(datetime(2024, 2, 2)) == "2nd day of February 2024"
+    assert nth_of_month_year(datetime(2024, 2, 3)) == "3rd day of February 2024"
+    assert nth_of_month_year(datetime(2024, 2, 29)) == "29th day of February 2024"
+
+
+def test_month_day_year() -> None:
+    """Month day, year."""
+    assert month_day_year(datetime(2024, 1, 1)) == "January 1, 2024"
+    assert month_day_year(datetime(2024, 1, 31)) == "January 31, 2024"
+    assert month_day_year(datetime(2024, 2, 2)) == "February 2, 2024"
+    assert month_day_year(datetime(2024, 2, 3)) == "February 3, 2024"
+    assert month_day_year(datetime(2024, 2, 29)) == "February 29, 2024"
+
+
+def test_day_month_year() -> None:
+    """Day month year."""
+    assert day_month_year(datetime(2024, 1, 1)) == "01 January 2024"
+    assert day_month_year(datetime(2024, 1, 31)) == "31 January 2024"
+    assert day_month_year(datetime(2024, 2, 2)) == "02 February 2024"
+    assert day_month_year(datetime(2024, 2, 3)) == "03 February 2024"
+    assert day_month_year(datetime(2024, 2, 29)) == "29 February 2024"
 
 
 ## English
