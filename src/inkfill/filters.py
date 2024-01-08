@@ -20,7 +20,7 @@ def nth_of_month_year(dt: datetime) -> str:
 
 def month_day_year(dt: datetime) -> str:
     """Return date as `{month} {day}, {year}`."""
-    return dt.strftime(f"%B {dt.day}, %Y")
+    return dt.strftime("%B %-d, %Y")
 
 
 def day_month_year(dt: datetime) -> str:
