@@ -306,6 +306,16 @@ class Refs:
         """Reference to current level."""
         return Ref() if len(self.stack) == 0 else self.stack[-1]
 
+    def ancestor(self, kind: Union[str, Division]) -> Ref:
+        """Return the ancestor that matches the `kind`."""
+        kind = Division.get(kind)
+        result = self.current
+        while result.parent:
+            if result.kind is kind:
+                return result
+            result = result.parent
+        return result
+
     def push(
         self,
         kind: Union[str, Division] = Section,

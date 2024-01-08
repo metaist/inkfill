@@ -90,10 +90,12 @@ def test_refs_section_within_part() -> None:
     """Formatting nested references."""
     refs = Refs()
     refs.push("Article").up()
-    refs.push("Part").up()
+    part = refs.push("Part").up()
     refs.push("Section").up()
     ref = refs.push("Section").up()
-    assert ">1.1<" in ref.refer()
+    assert ">Section 1.1<" in ref.refer()
+    assert refs.ancestor("Part") is part
+    assert refs.ancestor("Exhibit").parent is None
 
 
 def test_refs_preamble() -> None:
