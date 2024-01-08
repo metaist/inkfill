@@ -87,10 +87,11 @@ def test_dollars() -> None:
 
     # whole dollars
     assert dollars(0) == "zero dollars (US$0.00)"
-    assert dollars(1) == "one dollar exactly (US$1.00)"
-    assert dollars(2) == "two dollars exactly (US$2.00)"
-    assert dollars(10) == "ten dollars exactly (US$10)"
-    assert dollars(10000) == "ten thousand dollars exactly (US$10,000)"
+    assert dollars(1) == "one dollar (US$1.00)"
+    assert dollars(2) == "two dollars (US$2.00)"
+    assert dollars(10) == "ten dollars (US$10)"
+    assert dollars(10000) == "ten thousand dollars (US$10,000)"
+    assert dollars(10000, exact=True) == "ten thousand dollars exactly (US$10,000.00)"
 
     # dollars and cents
     assert dollars(1.25) == "one dollar and twenty-five cents (US$1.25)"

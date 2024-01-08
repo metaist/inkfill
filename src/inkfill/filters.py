@@ -220,7 +220,7 @@ def USD(num: float, cents: bool = False) -> str:
     return f"US${num:,}"
 
 
-def dollars(num: float) -> str:
+def dollars(num: float, exact: bool = False) -> str:
     """Return spelled-out dollars. Commonly used in contracts."""
     dec = Decimal(str(num))
 
@@ -239,8 +239,8 @@ def dollars(num: float) -> str:
     if part:
         part *= 100
         result += f"{to_cardinal(int(part))} cent{'s' if part != 1 else ''}"
-    elif num != 0:
+    elif num != 0 and exact:
         result += " exactly"
 
-    result += f" ({USD(num, cents=part > 0 or num < 10)})"
+    result += f" ({USD(num, cents=exact or part > 0 or num < 10)})"
     return result
