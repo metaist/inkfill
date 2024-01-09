@@ -192,7 +192,7 @@ NUMERAL_FUNC = Callable[[int], str]
 """Render a numeral from an integer."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class NumFormat(Registrable):
     """Numeral formatter."""
 

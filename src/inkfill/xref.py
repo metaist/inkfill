@@ -30,7 +30,7 @@ def slugify(*names: str) -> str:
     ).strip("-")
 
 
-@dataclass
+@dataclass(frozen=True)
 class RefFormat(Registrable):
     """Reference format."""
 
@@ -198,7 +198,7 @@ class Ref:
     slug: str = ""
     """Unique ID of this reference (should include `kind` + `name`)."""
 
-    kind: Division = field(default=Section)
+    kind: Division = field(default_factory=lambda: Section)
     """What kind of reference is this?"""
 
     values: List[int] = field(default_factory=list)
