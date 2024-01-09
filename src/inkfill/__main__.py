@@ -15,9 +15,12 @@ from datetime import datetime
 from datetime import timedelta
 from os import environ as ENV
 from pathlib import Path
+from typing import Any
 from typing import cast
+from typing import Dict
 from typing import List
 from typing import Optional
+from typing import Union
 
 # lib
 from attrbox import AttrDict
@@ -137,13 +140,22 @@ def setup_config(mtime: int = 0) -> AttrDict:
     """Setup the config."""
     global config
 
-    config = AttrDict(load_config(args.config))
+    config = convert_nested(load_config(args.config))
     config.mtime = mtime or args.config.stat().st_mtime
     config.args = args
     config.now = datetime.now()
     config.document = [AttrDict(d) for d in config.document or []]
     print("[inkfill] configuration loaded")
     return config
+
+
+def convert_nested(obj: Union[Dict[str, Any], List[Any], Any]) -> AttrDict:
+    """Return deeply-nested `dict` converted to `AttrDict`."""
+    if isinstance(obj, dict):
+        return AttrDict({k: convert_nested(v) for k, v in obj.items()})
+    if isinstance(obj, list):
+        return [convert_nested(v) for v in obj]
+    return obj
 
 
 @tl.job(timedelta(seconds=1.5))
