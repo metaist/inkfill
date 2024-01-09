@@ -77,8 +77,8 @@ def doc_list() -> str:
     """List of possible documents."""
     result = "<ul>"
     for idx, doc in enumerate(config.document):
-        title = doc.title or "Untitled Document " + (idx + 1)
-        title = title.format(**config)
+        doc = doc_config(config, idx)
+        title = doc.title or f"Untitled Document {(idx + 1)}"
         result += f"""<li><a href="/doc/{idx}">{title}</a></li>"""
     result += "</ul>"
     return result
@@ -87,14 +87,20 @@ def doc_list() -> str:
 @app.route("/doc/<idx:int>")
 def doc_render(idx: int) -> str:
     """Render the nth document."""
-    doc = config.document[idx]
-    path = (doc.template or "").format(**config)
-    tmpl = renderer.get_template(path)
-    config_doc = AttrDict() << config << doc
-    for key, val in config_doc.items():
+    doc = doc_config(config, idx)
+    tmpl = renderer.get_template(doc.template)
+    return cast(str, tmpl.render(config=doc, xref=Refs(), Refs=Refs))
+
+
+def doc_config(config: AttrDict, idx: int) -> AttrDict:
+    """Return an interpolated document-specific config."""
+    result = AttrDict() << config << config.document[idx]
+    for key, val in result.items():
         if isinstance(val, str):
-            config_doc[key] = val.format(**config)
-    return cast(str, tmpl.render(config=config_doc, xref=Refs(), Refs=Refs))
+            result[key] = val.format(**result)
+
+    print(result)
+    return result
 
 
 def setup_jinja() -> Environment:
