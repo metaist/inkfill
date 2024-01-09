@@ -95,11 +95,10 @@ def doc_render(idx: int) -> str:
 def doc_config(config: AttrDict, idx: int) -> AttrDict:
     """Return an interpolated document-specific config."""
     result = AttrDict() << config << config.document[idx]
+    result.date = result.date or config.now.date()
     for key, val in result.items():
         if isinstance(val, str):
             result[key] = val.format(**result)
-
-    print(result)
     return result
 
 
@@ -144,7 +143,6 @@ def setup_config(mtime: int = 0) -> AttrDict:
     config.now = datetime.now()
     config.document = [AttrDict(d) for d in config.document or []]
     print("[inkfill] configuration loaded")
-    print(config)
     return config
 
 
