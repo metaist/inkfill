@@ -98,6 +98,28 @@ li {
   margin-bottom: 1rem;
 }
 
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+  margin-bottom: 1rem;
+
+  dt,
+  dd {
+    margin-bottom: 0.5rem;
+  }
+
+  dt {
+    grid-column-start: 1;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 1rem;
+  }
+
+  dd {
+    grid-column-start: 2;
+  }
+}
+
 // Other //
 
 table {
