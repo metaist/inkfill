@@ -117,6 +117,7 @@ def doc_config(config: AttrDict, idx: int) -> AttrDict:
     # 3: add doc-specific values
     result <<= doc
     result.date = result.date or config.now.date()
+    result.pop("document")
     return convert_nested_str(result, result)
 
 
