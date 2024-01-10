@@ -166,7 +166,8 @@ def test_numeral() -> None:
     """Numeral system."""
     assert NumFormat.get("decimal") is DECIMAL
     assert NumFormat.get(DECIMAL) is DECIMAL
-    assert NumFormat.get("unknown") is NumFormat.DEFAULT
+    with pytest.raises(LookupError):
+        NumFormat.get("unknown")
 
     assert NumFormat.get("").render(1) == ""
     assert NumFormat.get("decimal").render(1) == "1"

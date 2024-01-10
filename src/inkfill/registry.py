@@ -18,9 +18,6 @@ NAME_REGISTRY: Dict[str, Registrable] = {}
 class Registrable:
     """Object that can be registered in the name registry."""
 
-    DEFAULT: Registrable
-    """Default value of this type."""
-
     name: str
     """Name of this object."""
 
@@ -33,11 +30,11 @@ class Registrable:
         return self
 
     @classmethod
-    def get(cls: Type[T], name: Union[str, T, None], default: Optional[T] = None) -> T:
+    def get(cls: Type[T], name: Union[str, T], default: Optional[T] = None) -> T:
         """Get the requested named object."""
-        if name is None:
-            return cast(T, default or cls.DEFAULT)
         if isinstance(name, cls):
             return name
         result = NAME_REGISTRY.get(cast(str, name), default)
-        return cast(T, result or cls.DEFAULT)
+        if not result:
+            raise LookupError(f"Cannot find name: {name}")
+        return cast(T, result)

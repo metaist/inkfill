@@ -72,6 +72,9 @@ def cite_name(ref: Ref, cite: str = "") -> str:
     """
 
 
+NULL_REF = RefFormat("null-ref", lambda _: "").add()
+"""Always return an empty string."""
+
 DOUBLE_QUOTES = RefFormat(
     "double-quotes", lambda ref: f"&ldquo;{ref.name}&rdquo;"
 ).add()
@@ -98,9 +101,7 @@ CITE_SECTIONS = RefFormat("cite-sections", cite_sections).add()
 CITE_NAME = RefFormat("cite-name", cite_name).add()
 """Show full citation and the name (e.g., define `Section`, `Subsection`)."""
 
-RefFormat.DEFAULT = CITE_FULL = RefFormat(
-    "kind-cite", lambda ref: f"{ref.kind} {ref.cite}"
-).add()
+KIND_CITE = RefFormat("kind-cite", lambda ref: f"{ref.kind} {ref.cite}").add()
 """Show `kind` and `cite` (e.g., refer to non-`Term`)."""
 
 KIND_LAST = RefFormat("kind-last", lambda ref: f"{ref.kind} {CITE_LAST(ref)}").add()
@@ -128,7 +129,7 @@ class Division(Registrable):
     define: RefFormat = field(default=CITE_NAME)
     """Default formatting for defining a reference of this type."""
 
-    refer: RefFormat = field(default=CITE_FULL)
+    refer: RefFormat = field(default=KIND_CITE)
     """Default formatting for referring to a reference of this type."""
 
     def __str__(self) -> str:
@@ -143,7 +144,7 @@ Term = Division("Term", NumFormat.get(""), define=NAME_ONLY, refer=NAME_ONLY).ad
 # Divisions
 # https://weagree.com/clm/contracts/contract-structure-and-presentation/articles-sections-clause-numbering/
 
-Preamble = Division("Preamble", define=RefFormat.get(""), refer=NAME_ONLY).add()
+Preamble = Division("Preamble", define=NULL_REF, refer=NAME_ONLY).add()
 """First section, typically unnumbered."""
 
 Article = Division("Article", NumFormat.get("upper-roman"), define=TWO_LINE).add()
@@ -153,9 +154,7 @@ Part = Division(
     "Part", NumFormat.get("upper-alpha"), define=CITE_LAST_NAME, refer=KIND_LAST
 ).add()
 
-Division.DEFAULT = Section = Division(
-    "Section", define=CITE_NAME, refer=KIND_SECTIONS
-).add()
+Section = Division("Section", define=CITE_NAME, refer=KIND_SECTIONS).add()
 """The most common and default level."""
 
 Subsection = Division("Subsection", define=CITE_NAME, refer=KIND_SECTIONS).add()
@@ -327,9 +326,9 @@ class Refs:
         level.parent = self.current
         level.kind = Division.get(kind) or Section
         level.values.append(0)
-        level.numerals.append(NumFormat.get(numeral, level.kind.numeral))
-        level.defines.append(RefFormat.get(define, level.kind.define))
-        level.refers.append(RefFormat.get(refer, level.kind.refer))
+        level.numerals.append(NumFormat.get(numeral or level.kind.numeral))
+        level.defines.append(RefFormat.get(define or level.kind.define))
+        level.refers.append(RefFormat.get(refer or level.kind.refer))
         self.stack.append(level)
         return self
 

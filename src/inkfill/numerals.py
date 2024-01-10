@@ -229,7 +229,7 @@ def call_title(f: NUMERAL_FUNC) -> NUMERAL_FUNC:
 NULL_FORMAT = NumFormat("", lambda *_: "").add()
 """Special empty formatting."""
 
-NumFormat.DEFAULT = DECIMAL = NumFormat("decimal", to_decimal, prefix=".").add()
+DECIMAL = NumFormat("decimal", to_decimal, prefix=".").add()
 """Arabic numerals: 1, 2, 3..."""
 # https://www.w3.org/TR/predefined-counter-styles/#decimal
 

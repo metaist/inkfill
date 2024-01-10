@@ -34,8 +34,9 @@ def test_ref_format() -> None:
     assert "1(b)" in RefFormat.get("two-line").render(ref)
     assert "(b)" in RefFormat.get("cite-last").render(ref)
     assert "(b)" in RefFormat.get("cite-last-name").render(ref)
+    # assert "1(b)" in RefFormat.get("cite-sections").render(ref)
+    assert "1(b)" in RefFormat.get("kind-cite").render(ref)
     assert ref.name in RefFormat.get("cite-name").render(ref)
-    assert "1(b)" in RefFormat.get("cite-full").render(ref)
     assert "Section (b)" in RefFormat.get("kind-last").render(ref)
     assert ref.name == RefFormat.get("name-only").render(ref)
 
@@ -101,7 +102,7 @@ def test_refs_section_within_part() -> None:
 def test_refs_preamble() -> None:
     """Test Preamble formatting."""
     refs = Refs()
-    html = refs.push("Preamble").up("Preamble")
+    html = refs.push("Preamble").up()
     ref = refs.current
     assert "><" in html  # i.e. empty tag
     assert "Preamble" in ref.refer()
