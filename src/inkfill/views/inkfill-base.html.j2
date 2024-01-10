@@ -53,20 +53,7 @@
   {% endif %}
 
   {% block scripts %}{% endblock %}
-  <script>
-    [].slice.apply(document.querySelectorAll("a.ref")).forEach((link) => {
-      const href = link.getAttribute("href")
-      const ref = document.querySelector(href);
-      if (!ref) {
-        console.error("[inkfill] Could not find reference:", href)
-        return;
-      }
-
-      const attr = link.getAttribute("data-attr") || "data-cite";
-      link.innerText = ref.getAttribute(attr);
-      link.classList.remove("not-defined");
-    });
-  </script>
+  <script src="/static/inkfill.js"></script>
   <script src="/static/paged.polyfill.js"></script>
 </body>
 
