@@ -13,10 +13,11 @@ from .numerals import to_ordinal
 from .numerals import to_roman
 
 from .filters import compound
-from .filters import nth_of_month_year
-from .filters import month_day_year
 from .filters import day_month_year
 from .filters import dollars
+from .filters import month_day_year
+from .filters import nth_of_month_year
+from .filters import one_or_many
 from .filters import plural
 from .filters import spell_number
 from .filters import USD
@@ -49,6 +50,7 @@ __all__ = [
     "day_month_year",
     "dollars",
     "plural",
+    "one_or_many",
     "spell_number",
     "USD",
     # xref

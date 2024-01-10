@@ -45,6 +45,7 @@ from . import dollars
 from . import month_day_year
 from . import nth_of_month_year
 from . import NumFormat
+from . import one_or_many
 from . import plural
 from . import Refs
 from . import spell_number
@@ -159,6 +160,7 @@ def setup_jinja() -> Environment:
     renderer.filters["commafy"] = commafy
     renderer.filters["num_format"] = lambda num, format: NumFormat.get(format)(num)
     renderer.filters["say_number"] = to_cardinal
+    renderer.filters["one_or_many"] = one_or_many
     renderer.filters["spell_number"] = spell_number
 
     renderer.filters["json.dumps"] = lambda o: json.dumps(o, indent=2, default=str)

@@ -7,6 +7,7 @@ from typing import List
 from typing import Literal
 
 # pkg
+from .numerals import commafy
 from .numerals import to_cardinal
 from .numerals import to_nth
 
@@ -202,10 +203,14 @@ def plural(word: str) -> str:
     return f"{word}s"
 
 
+def one_or_many(num: int, one: str, many: str = "") -> str:
+    """Return `one` or `many` depending on `num`."""
+    return one if abs(num) == 1 else (many or plural(one))
+
+
 def spell_number(num: int, unit: str, units: str = "") -> str:
     """Spell out the given number and units."""
-    units = units or plural(unit)
-    return f"{to_cardinal(num)} ({num:,}) {unit if abs(num) == 1 else units}"
+    return f"{to_cardinal(num)} ({commafy(num)}) {one_or_many(num, unit, units)}"
 
 
 ## Money

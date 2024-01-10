@@ -5,10 +5,11 @@ from datetime import datetime
 
 # pkg
 from inkfill import compound
-from inkfill import nth_of_month_year
-from inkfill import month_day_year
 from inkfill import day_month_year
 from inkfill import dollars
+from inkfill import month_day_year
+from inkfill import nth_of_month_year
+from inkfill import one_or_many
 from inkfill import spell_number
 from inkfill import USD
 
@@ -53,6 +54,15 @@ def test_compound() -> None:
     assert compound(["A", "B", "C"]) == "A, B, and C"
     assert compound(["A", "B", "C"], oxford=False) == "A, B and C"
     assert compound(["A", "B", "C"], "or") == "A, B, or C"
+
+
+def test_one_or_many() -> None:
+    """Number agreement."""
+    assert one_or_many(-10, "degree") == "degrees"
+    assert one_or_many(-1, "degree") == "degree"
+    assert one_or_many(0, "dollar") == "dollars"
+    assert one_or_many(1, "day") == "day"
+    assert one_or_many(10, "day") == "days"
 
 
 def test_spell_number() -> None:
