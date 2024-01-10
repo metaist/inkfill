@@ -20,6 +20,7 @@ from typing import cast
 from typing import Dict
 from typing import List
 from typing import Optional
+from typing import TypeVar
 from typing import Union
 
 # lib
@@ -48,6 +49,9 @@ from . import Refs
 from . import spell_number
 from . import to_cardinal
 from . import USD
+
+T = TypeVar("T")
+"""Generic type variable."""
 
 PATH_VIEWS = Path(__file__).parent.resolve() / "views"
 """Path to views."""
@@ -99,10 +103,20 @@ def doc_config(config: AttrDict, idx: int) -> AttrDict:
     """Return an interpolated document-specific config."""
     result = AttrDict() << config << config.document[idx]
     result.date = result.date or config.now.date()
-    for key, val in result.items():
-        if isinstance(val, str):
-            result[key] = val.format(**result)
-    return result
+    return convert_nested_str(result, result)
+
+
+def convert_nested_str(item: T, config: AttrDict) -> T:
+    """Render deeply-nested strings."""
+    if isinstance(item, str):
+        item = renderer.from_string(item).render(**config)
+    if isinstance(item, dict):
+        for key, val in item.items():
+            item[key] = convert_nested_str(val, config)
+    elif isinstance(item, list):
+        for idx, val in enumerate(item):
+            item[idx] = convert_nested_str(val, config)
+    return item
 
 
 def setup_jinja() -> Environment:
@@ -140,7 +154,7 @@ def setup_config(mtime: int = 0) -> AttrDict:
     """Setup the config."""
     global config
 
-    config = convert_nested(load_config(args.config))
+    config = convert_nested_dict(load_config(args.config))
     config.mtime = mtime or args.config.stat().st_mtime
     config.args = args
     config.now = datetime.now()
@@ -149,12 +163,12 @@ def setup_config(mtime: int = 0) -> AttrDict:
     return config
 
 
-def convert_nested(obj: Union[Dict[str, Any], List[Any], Any]) -> AttrDict:
+def convert_nested_dict(obj: Union[Dict[str, Any], List[Any], Any]) -> AttrDict:
     """Return deeply-nested `dict` converted to `AttrDict`."""
     if isinstance(obj, dict):
-        return AttrDict({k: convert_nested(v) for k, v in obj.items()})
+        return AttrDict({k: convert_nested_dict(v) for k, v in obj.items()})
     if isinstance(obj, list):
-        return [convert_nested(v) for v in obj]
+        return [convert_nested_dict(v) for v in obj]
     return obj
 
 
