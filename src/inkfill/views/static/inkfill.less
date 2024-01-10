@@ -66,6 +66,16 @@ section section {
   }
 }
 
+strong,
+.no-quotes {
+  .def[data-kind="Term"] {
+    &::before,
+    &::after {
+      content: initial;
+    }
+  }
+}
+
 a {
   color: blue;
   &:visited {
