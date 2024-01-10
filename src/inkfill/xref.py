@@ -287,6 +287,10 @@ class Refs:
         """Construct a new reference manager."""
         self.reset()
 
+    def __str__(self) -> str:
+        """Return blank string to avoid rendering."""
+        return ""
+
     def reset(self) -> Refs:
         """Reset the references."""
         self.stack = []
