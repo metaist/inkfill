@@ -50,6 +50,7 @@
       {% endfor %}
     </ul>
   </section>
+  <script>console.log("config", {{ config | json.dumps }})</script>
   {% endif %}
 
   {% block scripts %}{% endblock %}

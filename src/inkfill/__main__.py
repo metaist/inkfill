@@ -22,6 +22,7 @@ from typing import List
 from typing import Optional
 from typing import TypeVar
 from typing import Union
+import json
 
 # lib
 from attrbox import AttrDict
@@ -159,6 +160,8 @@ def setup_jinja() -> Environment:
     renderer.filters["num_format"] = lambda num, format: NumFormat.get(format)(num)
     renderer.filters["say_number"] = to_cardinal
     renderer.filters["spell_number"] = spell_number
+
+    renderer.filters["json.dumps"] = lambda o: json.dumps(o, indent=2, default=str)
     return renderer
 
 
