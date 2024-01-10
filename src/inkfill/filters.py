@@ -217,7 +217,7 @@ def USD(num: float, cents: bool = False) -> str:
         if 0 < num < 0.01:
             return f"US${num}"
         return f"US${num:,.2f}"
-    return f"US${num:,}"
+    return f"US${int(num):,}"
 
 
 def dollars(num: float, exact: bool = False) -> str:
@@ -242,5 +242,6 @@ def dollars(num: float, exact: bool = False) -> str:
     elif num != 0 and exact:
         result += " exactly"
 
-    result += f" ({USD(num, cents=exact or part > 0 or num < 10)})"
+    cents = exact or part > 0 or num < 10
+    result += f" ({USD(num, cents=cents)})"
     return result
