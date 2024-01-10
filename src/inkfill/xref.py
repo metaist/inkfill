@@ -333,7 +333,7 @@ class Refs:
         self.stack.append(level)
         return self
 
-    def up(self, name: str = "", slug: str = "") -> Ref:
+    def up(self, name: str = "", slug: str = "") -> str:
         """Increment current level."""
         ref = self.current.copy()
         ref.name = name
@@ -341,7 +341,7 @@ class Refs:
         ref.update_slug(slug)  # needs name & values updated
         self.stack[-1] = ref
         self.store[ref.slug] = ref
-        return ref
+        return ref.define()
 
     def pop(self, num: int = 1) -> Refs:
         """Remove one or more level."""

@@ -71,14 +71,12 @@ def test_refs_basic() -> None:
     refs = Refs()
     assert refs.undefined == []
 
-    ref = refs.push().push().push("Subsection").up("Test")
+    refs.push().push().push("Subsection").up("Test")
+    ref = refs.current
     assert refs.current is ref
     assert ref.slug == "subsection-test"
     assert ref.name == "Test"
     assert ref.cite == "0.0.1"
-    assert not ref.is_defined
-
-    ref.define()
     assert ref.is_defined
 
     refs.pop(4)  # more than levels, but it's ok
@@ -90,9 +88,11 @@ def test_refs_section_within_part() -> None:
     """Formatting nested references."""
     refs = Refs()
     refs.push("Article").up()
-    part = refs.push("Part").up()
+    refs.push("Part").up()
+    part = refs.current
     refs.push("Section").up()
-    ref = refs.push("Section").up()
+    refs.push("Section").up()
+    ref = refs.current
     assert ">Section 1.1<" in ref.refer()
     assert refs.ancestor("Part") is part
     assert refs.ancestor("Exhibit").parent is None
@@ -101,8 +101,9 @@ def test_refs_section_within_part() -> None:
 def test_refs_preamble() -> None:
     """Test Preamble formatting."""
     refs = Refs()
-    ref = refs.push("Preamble").up("Preamble")
-    assert "><" in ref.define()  # i.e. empty tag
+    html = refs.push("Preamble").up("Preamble")
+    ref = refs.current
+    assert "><" in html  # i.e. empty tag
     assert "Preamble" in ref.refer()
 
 
