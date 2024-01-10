@@ -1,4 +1,5 @@
 [[document]]
+imports = ["letter.toml"]
 title = "Example Letter"
 template = "letter.html.j2"
 number = 2047

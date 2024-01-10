@@ -101,7 +101,19 @@ def doc_render(idx: int) -> str:
 
 def doc_config(config: AttrDict, idx: int) -> AttrDict:
     """Return an interpolated document-specific config."""
-    result = AttrDict() << config << config.document[idx]
+    # 1: start with config
+    result = AttrDict() << config
+
+    # 2: resolve any imports
+    doc = config.document[idx]
+    if "imports" in doc:
+        parent = args.config.parent
+        imports = [Path(parent / p).resolve() for p in doc.pop("imports")]
+        for file in imports:
+            result <<= load_config(file, load_imports=True, done=imports)
+
+    # 3: add doc-specific values
+    result <<= doc
     result.date = result.date or config.now.date()
     return convert_nested_str(result, result)
 
