@@ -70,8 +70,8 @@ classifiers = [
 ]
 
 [tool.pdm.scripts]
-black = { shell = "black ." }
-ruff = { shell = "ruff ." }
+black = { shell = "ruff format ." }
+ruff = { shell = "ruff check ." }
 cspell = { shell = "cspell --gitignore '**/*.{py,txt,md,markdown}'" }
 pyright = { shell = "pyright src test" }
 
